@@ -1,0 +1,52 @@
+
+<?xml version="1.0" encoding="ISO-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <head>
+        <title xml:lang="de">Formel 0 - Spielen</title>
+        <meta http-equiv="content-type" content="text/html; charset=ISO-8859-1" />
+        <link rel="stylesheet" type="text/css" href="styles/screen.css" />
+
+        
+
+        
+    </head>
+    <body>
+        <div id="container">
+            <div id="bordercontainer">
+                <div id="header">
+                    <div id="header_left"><h1 class="accessibility">Formel 0</h1></div>
+                    <div id="header_right"></div>
+                </div>
+                <div id="navigation">
+                    <h2 class="accessibility">Navigation</h2>
+                    <ul title="Navigation">
+                        <li><a id="startNewGame" href="GameServlet?restart=true" tabindex="1">Neues Spiel</a></li>
+                        <li><a href="#" tabindex="2">Ausloggen</a></li>
+                    </ul>
+                </div>
+                <div id="main-area">
+                    <div class="info">
+                        <ui:insert name="info">
+                            
+                        </ui:insert>    	  
+                    </div>
+                    <div class="field">
+                        <ui:insert name="field">
+                            
+                        </ui:insert>
+                    </div>
+                    <div class="player">
+                        <ui:insert name="dice">
+                            
+                        </ui:insert>
+                    </div>
+                </div>
+            </div>
+            <div id="footer">
+                &copy; 2013 Formel 0
+            </div>
+        </div>
+    </body>
+</html>
