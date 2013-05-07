@@ -12,10 +12,14 @@ package formel0api;
 
 import java.util.ArrayList;
 import java.util.List;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
 
 /**
  * Class representing a player playing in a {@link Game}.
  */
+@ManagedBean(name="player")
+@SessionScoped
 public class Player {
 
     /**
@@ -23,11 +27,15 @@ public class Player {
      */
     private List<Integer> history = new ArrayList<Integer>();
     /**
-     * The name of this user
+     * The name of this player
      */
     private String name;
     /**
-     * The current position of the user's car
+     * The password of the player
+     */
+    private String password;
+    /**
+     * The current position of the player's car
      */
     private int position = 0;
 
@@ -42,14 +50,25 @@ public class Player {
         this.name = name;
         setPosition(0);
     }
+    
+    /** Creates a new instance of Player */
+    public Player() {
+    }
 
-    /**
-     * Returns the name of this player.
-     *
-     * @return the name
-     */
     public String getName() {
         return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
     }
 
     /**
