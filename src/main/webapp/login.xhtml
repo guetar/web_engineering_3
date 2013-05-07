@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"
-      xmlns:h="http://java.sun.com/jsf/html">
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core">
     <head>
         <title xml:lang="de">Formel 0 - Login</title>
         <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
@@ -24,11 +25,15 @@
                 <div id="content">
                     <h:form id="form">
                         <h:panelGrid id="grid" columns="1">
-                        <h:outputLabel value="Name" for="name"/>
-                        <h:inputText id="name"/>
-                        <h:outputLabel value="Password" for="password"/>
-                        <h:inputText id="password"/>
-                        <h:commandButton id="login" value="Login" action="#" /> 
+                        <h:outputLabel value="#{msg.name}: " for="name"/>
+                        <h:inputText id="name" value="#{loginCtrl.user.name}" required="true"
+                             validator="#{loginCtrl.validateUsername}" label="#{msg.name}">
+                            <f:validateLength minimum="3" maximum="8"/>
+                        </h:inputText>
+                        <h:outputLabel value="#{msg.password}: " for="password"/>
+                        <h:inputText id="password" value="#{loginCtrl.user.password}"/>
+                        <h:commandButton id="login" value="#{msg.login}" action="#{loginCtrl.login}" />
+                        <h:outputText value="#{msg.wrongpwd}" rendered="#{loginCtrl.loginfailed}" style="color: red"/>
                         </h:panelGrid>
                     </h:form>
                 </div>
