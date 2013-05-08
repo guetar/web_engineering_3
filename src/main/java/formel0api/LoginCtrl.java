@@ -5,16 +5,16 @@
 
 package formel0api;
 
-import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import java.util.Date;
 import java.util.Random;
-import javax.faces.validator.ValidatorException;
-import javax.faces.context.FacesContext;
-import javax.faces.component.UIComponent;
 import javax.faces.application.FacesMessage;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
 import javax.faces.event.ValueChangeEvent;
+import javax.faces.validator.ValidatorException;
 
 /**
  *
@@ -23,8 +23,8 @@ import javax.faces.event.ValueChangeEvent;
 @ManagedBean
 @SessionScoped
 public class LoginCtrl {
-    @ManagedProperty(value="#{User}")
-    User user;
+    @ManagedProperty(value="#{Player}")
+    Player player;
     @ManagedProperty(value = "true")
     private boolean displayonline;
 
@@ -35,12 +35,12 @@ public class LoginCtrl {
     }
 
     //Getter and Setter
-    public User getUser() {
-        return user;
+    public Player getPlayer() {
+        return player;
     }
 
-    public void setUser(User User) {
-        this.user = User;
+    public void setPlayer(Player player) {
+        this.player = player;
     }
 
     public Date getDatetime() {
@@ -64,7 +64,7 @@ public class LoginCtrl {
     }
 
 
-    public int getOnlineUsers()
+    public int getOnlinePlayers()
     {
         return new Random().nextInt(10) + 1;
     }
@@ -72,7 +72,7 @@ public class LoginCtrl {
     //Login - check password
     public String login()
     {
-        if(user.getPassword().equals("secret"))
+        if(player.getPassword().equals("secret"))
         {
             loginfailed = false;
             return "/store_main.xhtml";
@@ -94,15 +94,15 @@ public class LoginCtrl {
         FacesContext.getCurrentInstance().renderResponse();
     }
 
-    //Validation of the username
-    public void validateUsername(FacesContext ctx, UIComponent component, Object value) throws ValidatorException
+    //Validation of the Playername
+    public void validatePlayername(FacesContext ctx, UIComponent component, Object value) throws ValidatorException
     {
-        String username = (String)value;
+        String Playername = (String)value;
 
-        if(!username.equals("Markus") && !username.equals("Heidi"))
+        if(!Playername.equals("Markus") && !Playername.equals("Heidi"))
         {
             FacesMessage msg = new FacesMessage(
-            FacesMessage.SEVERITY_WARN,"Wrong username!", null);
+            FacesMessage.SEVERITY_WARN,"Wrong Playername!", null);
             throw new ValidatorException(msg);
         }
     }
