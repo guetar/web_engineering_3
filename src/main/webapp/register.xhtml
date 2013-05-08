@@ -11,7 +11,42 @@
             
             <ui:define name="content">
                 <h:form id="form">
-                <h:panelGrid id="grid" columns="2">
+                <p>
+                    <h:outputLabel value="#{msg.register}" for="register" />
+                </p><p>
+                    <h:outputLabel value="#{msg.registerOrder}" for="registerOrder" />
+                </p><p>
+                    <h:outputLabel value="#{msg.personalData}" for="personalData" />
+                </p>
+                    
+                <h:panelGrid id="grid_person" columns="2">
+                    
+                    <h:outputLabel value="#{msg.firstname}: " for="firstname"/>
+                    <h:inputText id="firstname"  required="true"
+                                 label="Firstname">
+                    </h:inputText>
+                    
+                    <h:outputLabel value="#{msg.lastname}: " for="lastname"/>
+                    <h:inputText id="lastname"  required="true"
+                                 label="Lastname">
+                    </h:inputText>
+                    
+                    <h:outputLabel value="#{msg.birthdate}: " for="birthdate"/>
+                    <h:inputText id="birthdate"  required="true"
+                                 label="Birthdate">
+                    </h:inputText>
+                    
+                    <h:outputLabel value="#{msg.sex}: " for="sex"/>
+                    <h:inputText id="sex"  required="true"
+                                 label="Sex">
+                    </h:inputText>
+                </h:panelGrid>
+                
+                <p>
+                    <h:outputLabel value="msg.loginData" for="loginData"/>
+                </p>
+                    
+                <h:panelGrid id="grid_login" columns="2">
                     <h:outputLabel value="#{msg.name}: " for="name"/>
                     <h:inputText id="name" value="#{loginCtrl.player.name}" required="true"
                                  validator="#{loginCtrl.validateUsername}" label="Name">
@@ -19,8 +54,9 @@
                     </h:inputText>
                     <h:outputLabel value="#{msg.password}: " for="password"/>
                     <h:inputText id="password" value="#{loginCtrl.player.password}"/>
-                    <h:commandButton id="login" value="#{msg.login}" action="#{loginCtrl.login}" />
-                    <h:outputText value="#{msg.wrongpwd}" rendered="#{loginCtrl.loginfailed}" style="color: red"/>
+                    
+                    <h:commandButton id="login" value="#{msg.register}" action="#{loginCtrl.register}" />
+                    <h:outputText value="#{msg.wrongpwd}" rendered="#{loginCtrl.registerfailed}" style="color: red"/>
                 </h:panelGrid>
             </h:form>
             </ui:define>
