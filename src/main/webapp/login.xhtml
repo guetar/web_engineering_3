@@ -12,7 +12,7 @@
 
         <ui:define name="content">
             <h:form id="form">
-                <h:panelGrid id="grid" columns="1">
+                <h:panelGrid id="grid" columns="2">
                     <h:outputLabel value="#{msg.name}: " for="name"/>
                     <h:inputText id="name" value="#{loginCtrl.player.name}" required="true"
                                  validator="#{loginCtrl.validateUsername}" label="Name">
