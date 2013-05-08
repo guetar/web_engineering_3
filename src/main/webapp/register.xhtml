@@ -10,7 +10,19 @@
         <ui:composition template="./template.xhtml">
             
             <ui:define name="content">
-                
+                <h:form id="form">
+                <h:panelGrid id="grid" columns="2">
+                    <h:outputLabel value="#{msg.name}: " for="name"/>
+                    <h:inputText id="name" value="#{loginCtrl.player.name}" required="true"
+                                 validator="#{loginCtrl.validateUsername}" label="Name">
+                        <f:validateLength minimum="3" maximum="8"/>
+                    </h:inputText>
+                    <h:outputLabel value="#{msg.password}: " for="password"/>
+                    <h:inputText id="password" value="#{loginCtrl.player.password}"/>
+                    <h:commandButton id="login" value="#{msg.login}" action="#{loginCtrl.login}" />
+                    <h:outputText value="#{msg.wrongpwd}" rendered="#{loginCtrl.loginfailed}" style="color: red"/>
+                </h:panelGrid>
+            </h:form>
             </ui:define>
             
         </ui:composition>

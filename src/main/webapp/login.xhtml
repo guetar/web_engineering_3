@@ -6,16 +6,7 @@
       xmlns:f="http://java.sun.com/jsf/core">
     
     <body>
-<<<<<<< HEAD
-        <ui:composition template="./template.xhtml">
-            
-            <ui:define name="content">
-                <div class="content">
-                </h:outputText>
-                </div>
-            </ui:define>
-        </ui:composition>
-=======
+        
         
     <ui:composition template="./template.xhtml">
 
@@ -31,12 +22,11 @@
                     <h:inputText id="password" value="#{loginCtrl.player.password}"/>
                     <h:commandButton id="login" value="#{msg.login}" action="#{loginCtrl.login}" />
                     <h:outputText value="#{msg.wrongpwd}" rendered="#{loginCtrl.loginfailed}" style="color: red"/>
+                    
                 </h:panelGrid>
             </h:form>
         </ui:define>
 
     </ui:composition>
-        
->>>>>>> 8e359bcea6b503af9dae8cd19a7c5555cff62269
     </body>
 </html>
