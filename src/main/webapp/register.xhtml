@@ -11,15 +11,21 @@
             
             <ui:define name="content">
                 <div class="content">
-                    <h:form id="form">
-
-                        <p>
-                            <h:outputLabel value="#{msg.register}" for="register" />
-                        </p><p>
-                            <h:outputLabel value="#{msg.registerOrder}" for="registerOrder" />
-                        </p><p>
-                            <h:outputLabel value="#{msg.personalData}" for="personalData" />
-                        </p>
+                <h:form id="form">
+                    
+                    <h2>
+                        <h:outputLabel value="#{msg.register}" for="register" />
+                    </h2><p>
+                        <h:outputLabel value="#{msg.registerOrder}" for="registerOrder" />
+                    </p><h3>
+                        <h:outputLabel value="#{msg.personalData}" for="personalData" />
+                    </h3>
+                    <h:panelGrid id="grid_person" columns="3">
+                        <h:outputLabel value="#{msg.firstname}: " for="first"/>
+                        <h:inputText id="first"  required="true" label="First">
+                            <f:validateRegex pattern="^[a-zA-Z]+$"/>
+                        </h:inputText>
+                        <h:message id="first_messages" for="first" style="color:red"/>
 
                         <h:panelGrid id="grid_person" columns="3">
                             <h:outputLabel value="#{msg.firstname}: " for="first"/>
@@ -66,8 +72,10 @@
 
                             <h:commandButton id="login" value="#{msg.register}" action="#{auth.register}" />
                         </h:panelGrid>
-                        
-                    </h:form>
+
+                        <h:commandButton id="login" value="#{msg.register}" action="#{auth.register}" />
+                    </h:panelGrid>
+                </h:form>
                 </div>
             </ui:define>
             
