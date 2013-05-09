@@ -10,9 +10,16 @@
  */
 package formel0api;
 
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.SessionScoped;
+
 /**
  * Class representing a Formel 0 game
  */
+@ManagedBean
+@SessionScoped
 public class Game {
 
     private static final int LAST_FIELD = 6;
@@ -42,6 +49,10 @@ public class Game {
      * Time already spent in this game
      */
     private long spenttime;
+    private int round;
+
+    public Game() {
+    }
 
     /**
      * Constructs a new {@link Game}
@@ -49,6 +60,11 @@ public class Game {
     public Game(Player player, Player computer) {
         this.player = player;
         this.computer = computer;
+    }
+
+    public void init(String playerName, String computerName) {
+        player = new Player(playerName, "");
+        computer = new Player(computerName, "");
     }
 
     /**
@@ -73,6 +89,12 @@ public class Game {
         return spenttime;
     }
 
+    public String getSpentTimeString() {
+        Date date = new Date(getSpentTime());
+        SimpleDateFormat formatter = new SimpleDateFormat("mm:ss");
+        return formatter.format(date);
+    }
+
     /**
      * Rolls the dice for the player and updates the position of the player's
      * car according to the score
@@ -81,12 +103,8 @@ public class Game {
      * @return score
      */
     public int rollthedice(Player player) {
-        if (gameOver) {
-            throw new IllegalArgumentException(
-                    "Game is over. Rolling the dice is not allowed.");
-        }
-
         int score = dice.roll();
+        player.setScore(score);
 
         int position = player.getPosition();
 
@@ -112,6 +130,16 @@ public class Game {
         }
 
         return score;
+    }
+
+    public void rollthedice() {
+        if(gameOver) {
+            return;
+        }
+        
+        round++;
+        rollthedice(player);
+        rollthedice(computer);
     }
 
     /**
@@ -145,5 +173,9 @@ public class Game {
      */
     public Player getComputer() {
         return computer;
+    }
+
+    public int getRound() {
+        return round;
     }
 }

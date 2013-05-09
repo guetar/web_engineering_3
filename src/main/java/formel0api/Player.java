@@ -40,7 +40,10 @@ public class Player {
      */
     private int position = 0;
 
-    public String first;
+
+    private int score;
+    
+    private String first;
     private String last;
     private Date birthdate;
     private String sex;
@@ -151,5 +154,13 @@ public class Player {
     
     public String getSex() {
         return sex;
+    }
+    
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
     }
 }
