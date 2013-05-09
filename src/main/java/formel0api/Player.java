@@ -40,7 +40,7 @@ public class Player {
      */
     private int position = 0;
 
-    private String first;
+    public String first;
     private String last;
     private Date birthdate;
     private String sex;

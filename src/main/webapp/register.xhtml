@@ -8,6 +8,16 @@
     <body>
         
         <ui:composition template="./template.xhtml">
+            <ui:define name="navigation">
+                
+                <div id="navigation">
+                    <h2 class="accessibility">Navigation</h2>
+                    <ul title="Navigation">
+                        <li><h:outputLink value="faces/login.xhtml"><h:outputText value="#{msg.home}" /></h:outputLink></li>
+                    </ul>
+                </div>
+                
+            </ui:define>
             
             <ui:define name="content">
                 <div class="content">
