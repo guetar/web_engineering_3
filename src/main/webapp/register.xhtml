@@ -48,7 +48,9 @@
                             <h:message id="last_messages" for="last" style="color:red"/>
 
                             <h:outputLabel value="#{msg.birthdate}: " for="birthdate"/>
-                            <h:inputText id="birthdate" value="#{auth.player.birthdate}" required="true" label="Birthdate" validator="#{auth.validateBirthdate}"/>
+                            <h:inputText id="birthdate" value="#{auth.player.birthdate}" required="true" label="Birthdate">
+                                <f:convertDateTime pattern="dd.MM.yyyy" timeZone="GMT+1" />
+                            </h:inputText>
                             <h:message id="birthdate_messages" for="birthdate" style="color:red"/>
 
                             <h:outputLabel value="#{msg.sex}: " for="birthdate"/>
