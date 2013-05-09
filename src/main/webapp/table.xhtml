@@ -2,16 +2,18 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:ui="http://java.sun.com/jsf/facelets">
+    
      <ui:define name="navigation">
-                
-                <div id="navigation">
-                    <h2 class="accessibility">Navigation</h2>
-                    <ul title="Navigation">
-                         <li><h:link outcome="table" value="#{msg.newgame}" /></li>
-                          <li><h:link outcome="login" value="#{msg.logout}" /></li>
-                    </ul>
-                </div>
-    <ui:define id="info" name="info">
+        <div id="navigation">
+            <h2 class="accessibility">Navigation</h2>
+            <ul title="Navigation">
+                    <li><h:link outcome="table" value="#{msg.newgame}" /></li>
+                    <li><h:link outcome="login" value="#{msg.logout}" /></li>
+            </ul>
+        </div>
+     </ui:define>
+    
+     <ui:define id="info" name="info">
         <h:panelGroup layout="block" id="info" class="info">
             <h2>Spielinformationen</h2>
             <table summary="Diese Tabelle zeigt Informationen zum aktuellen Spiel">
@@ -27,6 +29,7 @@
             </table>    	
         </h:panelGroup>
     </ui:define>
+    
     <ui:define name="field">
         <h:panelGroup layout="block" id="field" class="field">
             <h2 class="accessibility">Spielbereich</h2>
@@ -61,6 +64,7 @@
             </ol>
         </h:panelGroup>
     </ui:define>
+    
     <ui:define name="player">
         <h:panelGroup layout="block" id="player" class="player">
             <h2 class="accessibility">Wrfelbereich</h2>
@@ -73,5 +77,5 @@
             <h:outputText id="out" value="p1 sc:#{game.player.score}, pos: #{game.player.position}, cp sc:#{game.computer.score}, pos: #{game.computer.position}, go: #{game.gameOver}"/> 
         </h:panelGroup>
     </ui:define>
+    
 </ui:composition>
->>>>>>> ea56f42d556804066b2040996651030332a8fc8c

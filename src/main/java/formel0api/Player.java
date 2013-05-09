@@ -35,18 +35,17 @@ public class Player {
      * The password of the player
      */
     private String pwd;
-    /**
-     * The current position of the player's car
-     */
-    private int position = 0;
-
-
-    private int score;
     
     private String first;
     private String last;
     private Date birthdate;
     private String sex;
+    /**
+     * The current position of the player's car
+     */
+    private int position = 0;
+
+    private int score;
     
     /** Creates a new instance of Player */
     public Player() {
@@ -90,6 +89,46 @@ public class Player {
     public String getPwd() {
         return pwd;
     }
+    
+    public void setFirst(String first) {
+        this.first = first;
+    }
+    
+    public String getFirst() {
+        return first;
+    }
+    
+    public void setLast(String last) {
+        this.last = last;
+    }
+    
+    public String getLast() {
+        return last;
+    }
+    
+    public void setBirthdate(Date birthdate) {
+        this.birthdate = birthdate;
+    }
+    
+    public Date getBirthdate() {
+        return birthdate;
+    }
+    
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+    
+    public String getSex() {
+        return sex;
+    }
+    
+    public int getScore() {
+        return score;
+    }
+
+    public void setScore(int score) {
+        this.score = score;
+    }
 
     /**
      * Sets the actual position of this player's car
@@ -122,45 +161,5 @@ public class Player {
             return history.get(index);
         }
         return -1;
-    }
-    
-    public void setFirstName(String first) {
-        this.first = first;
-    }
-    
-    public String getFirst() {
-        return first;
-    }
-    
-    public void setLastName(String last) {
-        this.last = last;
-    }
-    
-    public String getLast() {
-        return last;
-    }
-    
-    public void setBirthDate(Date birthdate) {
-        this.birthdate = birthdate;
-    }
-    
-    public Date getBirthdate() {
-        return birthdate;
-    }
-    
-    public void setSex(String sex) {
-        this.sex = sex;
-    }
-    
-    public String getSex() {
-        return sex;
-    }
-    
-    public int getScore() {
-        return score;
-    }
-
-    public void setScore(int score) {
-        this.score = score;
     }
 }
