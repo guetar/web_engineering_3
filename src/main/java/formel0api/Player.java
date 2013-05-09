@@ -40,10 +40,10 @@ public class Player {
      */
     private int position = 0;
 
-    private String first = "";
-    private String last = "";
-    private Date birthdate = new Date();
-    private String sex = "";
+    private String first;
+    private String last;
+    private Date birthdate;
+    private String sex;
     
     /** Creates a new instance of Player */
     public Player() {
