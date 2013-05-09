@@ -40,6 +40,7 @@ public class Player {
      */
     private int position = 0;
 
+
     private int score;
     
     private String first;

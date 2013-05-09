@@ -1,15 +1,15 @@
-<?xml version="1.0" encoding="UTF-8"?>
 <ui:composition template="template.xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:ui="http://java.sun.com/jsf/facelets">
-    <ui:define name="navigation">
-        #{game.init("Super Mario", "Super C")} <!-- todo: REPLACE -->
-        <ul title="Navigation">
-            <li><a id="startNewGame" href="#" tabindex="1">#{msg.newGame}</a></li>
-            <li><a id="logout" href="#" tabindex="2">#{msg.logout}</a></li>
-        </ul>
-    </ui:define>
+     <ui:define name="navigation">
+                
+                <div id="navigation">
+                    <ul title="Navigation">
+                        <li><h:outputLink value="faces/login.xhtml"><h:outputText value="#{msg.newgame}" /></h:outputLink></li>
+                        <li><h:outputLink value="faces/login.xhtml"><h:outputText value="#{msg.logout}" /></h:outputLink></li>
+                    </ul>
+                </div>
     <ui:define id="info" name="info">
         <h:panelGroup layout="block" id="info" class="info">
             <h2>#{msg.gameInfo}</h2>
