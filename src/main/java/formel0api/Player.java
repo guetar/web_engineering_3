@@ -11,6 +11,7 @@
 package formel0api;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
@@ -39,11 +40,21 @@ public class Player {
      */
     private int position = 0;
 
+    private String first = "";
+    private String last = "";
+    private Date birthdate = new Date();
+    private String sex = "";
+    
+    /** Creates a new instance of Player */
+    public Player() {
+    }
+    
     /**
-     * Initializes a {@link Player} with the specified
-     * <code>name</code>.
+     * Initializes a {@link Player} with specified
+     * <code>name</code> and <code>pwd</code>.
      *
      * @param name to set
+     * @param pwd to set
      */
     public Player(String name, String pwd) {
         this.name = name;
@@ -52,38 +63,29 @@ public class Player {
     }
     
     public Player(Player p) {
-        this.name = p.name;
-        this.pwd = p.pwd;
+        this.name = p.getName();
+        this.pwd = p.getPwd();
+        this.first = p.getFirstName();
+        this.last = p.getLastName();
+        this.birthdate = p.getBirthDate();
+        this.sex = p.getSex();
         setPosition(0);
-    }
-    
-    /** Creates a new instance of Player */
-    public Player() {
-    }
-
-    public String getName() {
-        return name;
     }
 
     public void setName(String name) {
         this.name = name;
     }
 
-    public String getPwd() {
-        return pwd;
+    public String getName() {
+        return name;
     }
 
     public void setPwd(String pwd) {
         this.pwd = pwd;
     }
 
-    /**
-     * Return the actual position of this player's car
-     *
-     * @return the actual position of this player's car
-     */
-    public int getPosition() {
-        return this.position;
+    public String getPwd() {
+        return pwd;
     }
 
     /**
@@ -94,6 +96,15 @@ public class Player {
     public void setPosition(int pos) {
         this.position = pos;
         history.add(new Integer(pos));
+    }
+
+    /**
+     * Return the actual position of this player's car
+     *
+     * @return the actual position of this player's car
+     */
+    public int getPosition() {
+        return this.position;
     }
 
     /**
@@ -108,5 +119,37 @@ public class Player {
             return history.get(index);
         }
         return -1;
+    }
+    
+    public void setFirstName(String first) {
+        this.first = first;
+    }
+    
+    public String getFirstName() {
+        return first;
+    }
+    
+    public void setLastName(String last) {
+        this.last = last;
+    }
+    
+    public String getLastName() {
+        return last;
+    }
+    
+    public void setBirthDate(Date birthdate) {
+        this.birthdate = birthdate;
+    }
+    
+    public Date getBirthDate() {
+        return birthdate;
+    }
+    
+    public void setSex(String sex) {
+        this.sex = sex;
+    }
+    
+    public String getSex() {
+        return sex;
     }
 }
