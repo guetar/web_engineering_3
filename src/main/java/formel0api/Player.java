@@ -35,16 +35,16 @@ public class Player {
      * The password of the player
      */
     private String pwd;
-    
-    private String first;
-    private String last;
-    private Date birthdate;
-    private String sex;
     /**
      * The current position of the player's car
      */
     private int position = 0;
 
+    private String first;
+    private String last;
+    private Date birthdate;
+    private String sex;
+    
     private int score;
     
     /** Creates a new instance of Player */
@@ -89,6 +89,39 @@ public class Player {
     public String getPwd() {
         return pwd;
     }
+
+    /**
+     * Sets the actual position of this player's car
+     *
+     * @param pos actual position of this player's car
+     */
+    public void setPosition(int pos) {
+        this.position = pos;
+        history.add(new Integer(pos));
+    }
+
+    /**
+     * Return the actual position of this player's car
+     *
+     * @return the actual position of this player's car
+     */
+    public int getPosition() {
+        return this.position;
+    }
+
+    /**
+     * Returns the position at time (now - t) (i.e., if t=0 returns the current
+     * position, if t=1 returns last position, etc.)
+     *
+     * @param t position at time (now - t)
+     */
+    public int getPositionMinusT(int t) {
+        int index = history.size() - 1 - t;
+        if (index >= 0 && index < history.size()) {
+            return history.get(index);
+        }
+        return -1;
+    }
     
     public void setFirst(String first) {
         this.first = first;
@@ -128,38 +161,5 @@ public class Player {
 
     public void setScore(int score) {
         this.score = score;
-    }
-
-    /**
-     * Sets the actual position of this player's car
-     *
-     * @param pos actual position of this player's car
-     */
-    public void setPosition(int pos) {
-        this.position = pos;
-        history.add(new Integer(pos));
-    }
-
-    /**
-     * Return the actual position of this player's car
-     *
-     * @return the actual position of this player's car
-     */
-    public int getPosition() {
-        return this.position;
-    }
-
-    /**
-     * Returns the position at time (now - t) (i.e., if t=0 returns the current
-     * position, if t=1 returns last position, etc.)
-     *
-     * @param t position at time (now - t)
-     */
-    public int getPositionMinusT(int t) {
-        int index = history.size() - 1 - t;
-        if (index >= 0 && index < history.size()) {
-            return history.get(index);
-        }
-        return -1;
     }
 }

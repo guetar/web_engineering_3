@@ -90,7 +90,7 @@ public class Auth {
     //Validation of the birthdate
     public void validateBirthdate(FacesContext ctx, UIComponent component, Object value) throws ValidatorException {
         String birthdate = (String) value;
-        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+        SimpleDateFormat format = new SimpleDateFormat("DD.MM.YYYY");
         
         try{
             format.parse(birthdate);
@@ -99,6 +99,7 @@ public class Auth {
             FacesMessage.SEVERITY_WARN, getValue("wrongbirthdate"), null);
             throw new ValidatorException(msg);
         }
+        
     }
 
     //Login
