@@ -5,22 +5,21 @@
                 xmlns:ui="http://java.sun.com/jsf/facelets">
     <ui:define name="navigation">
         #{game.init("Super Mario", "Super C")} <!-- todo: REPLACE -->
-        <h2 class="accessibility">Navigation</h2>
         <ul title="Navigation">
-            <li><a id="startNewGame" href="#" tabindex="1">Neues Spiel</a></li>
-            <li><a id="logout" href="#" tabindex="2">Ausloggen</a></li>
+            <li><a id="startNewGame" href="#" tabindex="1">#{msg.newGame}</a></li>
+            <li><a id="logout" href="#" tabindex="2">#{msg.logout}</a></li>
         </ul>
     </ui:define>
     <ui:define id="info" name="info">
         <h:panelGroup layout="block" id="info" class="info">
-            <h2>Spielinformationen</h2>
+            <h2>#{msg.gameInfo}</h2>
             <table summary="Diese Tabelle zeigt Informationen zum aktuellen Spiel">
-                <tr><th id="leaderLabel" class="label">Fhrender</th><td id="leader" class="data">#{game.leader.name != null ? game.leader.name : "mehrere"}</td></tr>
-                <tr><th id="roundLabel" class="label">Runde</th><td id="round" class="data">#{game.round}</td></tr>
-                <tr><th id="timeLabel" class="label">Zeit</th><td id="time" class="data">#{game.spentTimeString}</td></tr>
-                <tr><th id="computerScoreLabel" class="label">Wrfelergebnis <em>#{game.computer.name}</em></th><td id="computerScore" class="data">#{game.computer.score}</td></tr>
+                <tr><th id="leaderLabel" class="label">#{msg.leader}</th><td id="leader" class="data">#{game.leader.name != null ? game.leader.name : "mehrere"}</td></tr>
+                <tr><th id="roundLabel" class="label">#{msg.round}</th><td id="round" class="data">#{game.round}</td></tr>
+                <tr><th id="timeLabel" class="label">#{msg.time}</th><td id="time" class="data">#{game.spentTimeString}</td></tr>
+                <tr><th id="computerScoreLabel" class="label">#{msg.roll} <em>#{game.computer.name}</em></th><td id="computerScore" class="data">#{game.computer.score}</td></tr>
             </table>  
-            <h2>Spieler</h2>
+            <h2>#{msg.player}</h2>
             <table summary="Diese Tabelle listet die Namen der Spieler auf">
                 <tr><th id="player1NameLabel" class="label">#{game.player.name}</th><td id="player1Name" class="data">#{game.player.name}</td></tr>
                 <tr><th id="player2NameLabel" class="label">#{game.computer.name}</th><td id="player2Name" class="data">#{game.computer.name}</td></tr>
@@ -29,42 +28,42 @@
     </ui:define>
     <ui:define name="field">
         <h:panelGroup layout="block" id="field" class="field">
-            <h2 class="accessibility">Spielbereich</h2>
+            <h2 class="accessibility">#{msg.track}</h2>
             <ol id="road">
                 <li id="start_road">
-                    <span class="accessibility">Startfeld</span>
+                    <span class="accessibility">#{msg.start}</span>
                     <span id="player1">
-                        <span class="accessibility"><em>Spieler 1</em></span>
+                        <span class="accessibility"><em>#{msg.player} 1</em></span>
                     </span>
                     <span id="player2">
-                        <span class="accessibility"><em>Spieler 2</em></span>
+                        <span class="accessibility"><em>#{msg.player} 2</em></span>
                     </span>
                 </li>
                 <li class="empty_road" id="road_1">
-                    <span class="accessibility">Feld 2</span>
+                    <span class="accessibility">#{msg.field} 2</span>
                 </li>
                 <li class="oil_road" id="road_2">
-                    <span class="accessibility">Feld 3</span>
+                    <span class="accessibility">#{msg.field} 3</span>
                 </li>
                 <li class="empty_road" id="road_3">
-                    <span class="accessibility">Feld 4</span>
+                    <span class="accessibility">#{msg.field} 4</span>
                 </li>
                 <li class="empty_road" id="road_4">
-                    <span class="accessibility">Feld 5</span>
+                    <span class="accessibility">#{msg.field} 5</span>
                 </li>
                 <li class="oil_road" id="road_5">
-                    <span class="accessibility">Feld 6</span>
+                    <span class="accessibility">#{msg.field} 6</span>
                 </li>
                 <li id="finish_road">
-                    <span class="accessibility">Zielfeld</span>
+                    <span class="accessibility">#{msg.finish}</span>
                 </li>
             </ol>
         </h:panelGroup>
     </ui:define>
     <ui:define name="player">
         <h:panelGroup layout="block" id="player" class="player">
-            <h2 class="accessibility">Wrfelbereich</h2>
-            <span class="accessibility">An der Reihe ist</span><div id="currentPlayerName">#{game.player.name}</div>
+            <h2 class="accessibility">#{msg.diceArea}</h2>
+            <span class="accessibility">#{msg.turn}</span><div id="currentPlayerName">#{game.player.name}</div>
             <h:form id="form">
                 <h:commandButton id="dice" image="resources/img/wuerfel1.png" tabindex="4" action="#{game.rollthedice}" title="Wrfel mit einer Eins" alt="Wrfel mit einer Eins">
                     <f:ajax render=":info :field :player"/>
