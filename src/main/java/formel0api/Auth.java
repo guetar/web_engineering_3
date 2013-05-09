@@ -68,40 +68,6 @@ public class Auth {
         newPlayer = wrongPwd = false;
     }
 
-	private ResourceBundle getBundle() {
-		if (bundle == null) {
-			FacesContext context = FacesContext.getCurrentInstance();
-			bundle = context.getApplication().getResourceBundle(context, "msg");
-		}
-		return bundle;
-	}
-
-	private String getValue(String key) {
-
-		String result = null;
-		try {
-			result = getBundle().getString(key);
-		} catch (MissingResourceException e) {
-			result = "???" + key + "???";
-		}
-		return result;
-	}
-    
-    //Validation of the birthdate
-    public void validateBirthdate(FacesContext ctx, UIComponent component, Object value) throws ValidatorException {
-        String birthdate = (String) value;
-        SimpleDateFormat format = new SimpleDateFormat("DD.MM.YYYY");
-        
-        try{
-            format.parse(birthdate);
-        } catch(ParseException e) {
-            FacesMessage msg = new FacesMessage(
-            FacesMessage.SEVERITY_WARN, getValue("wrongbirthdate"), null);
-            throw new ValidatorException(msg);
-        }
-        
-    }
-
     //Login
     public String login() {
         reset();
