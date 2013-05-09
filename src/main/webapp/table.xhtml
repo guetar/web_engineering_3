@@ -1,31 +1,76 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
-    
-    <body>
-        
-        <ui:composition template="./template.xhtml">
-            
-            <ui:define name="info">
-                <div class="info"> 
-                    
-                </div>
-            </ui:define>
-            
-            <ui:define name="field">
-                <div class="field">
-                    
-                </div>
-            </ui:define>
-            
-            <ui:define name="dice">
-                <div class="player"> 
-                    
-                </div>
-            </ui:define>
-        </ui:composition>
-    </body>
-</html>
+<ui:composition template="template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:define name="navigation">
+        #{game.init("Super Mario", "Super C")} <!-- todo: REPLACE -->
+        <h2 class="accessibility">Navigation</h2>
+        <ul title="Navigation">
+            <li><a id="startNewGame" href="#" tabindex="1">Neues Spiel</a></li>
+            <li><a id="logout" href="#" tabindex="2">Ausloggen</a></li>
+        </ul>
+    </ui:define>
+    <ui:define id="info" name="info">
+        <h:panelGroup layout="block" id="info" class="info">
+            <h2>Spielinformationen</h2>
+            <table summary="Diese Tabelle zeigt Informationen zum aktuellen Spiel">
+                <tr><th id="leaderLabel" class="label">Fhrender</th><td id="leader" class="data">#{game.leader.name != null ? game.leader.name : "mehrere"}</td></tr>
+                <tr><th id="roundLabel" class="label">Runde</th><td id="round" class="data">#{game.round}</td></tr>
+                <tr><th id="timeLabel" class="label">Zeit</th><td id="time" class="data">#{game.spentTimeString}</td></tr>
+                <tr><th id="computerScoreLabel" class="label">Wrfelergebnis <em>#{game.computer.name}</em></th><td id="computerScore" class="data">#{game.computer.score}</td></tr>
+            </table>  
+            <h2>Spieler</h2>
+            <table summary="Diese Tabelle listet die Namen der Spieler auf">
+                <tr><th id="player1NameLabel" class="label">#{game.player.name}</th><td id="player1Name" class="data">#{game.player.name}</td></tr>
+                <tr><th id="player2NameLabel" class="label">#{game.computer.name}</th><td id="player2Name" class="data">#{game.computer.name}</td></tr>
+            </table>    	
+        </h:panelGroup>
+    </ui:define>
+    <ui:define name="field">
+        <h:panelGroup layout="block" id="field" class="field">
+            <h2 class="accessibility">Spielbereich</h2>
+            <ol id="road">
+                <li id="start_road">
+                    <span class="accessibility">Startfeld</span>
+                    <span id="player1">
+                        <span class="accessibility"><em>Spieler 1</em></span>
+                    </span>
+                    <span id="player2">
+                        <span class="accessibility"><em>Spieler 2</em></span>
+                    </span>
+                </li>
+                <li class="empty_road" id="road_1">
+                    <span class="accessibility">Feld 2</span>
+                </li>
+                <li class="oil_road" id="road_2">
+                    <span class="accessibility">Feld 3</span>
+                </li>
+                <li class="empty_road" id="road_3">
+                    <span class="accessibility">Feld 4</span>
+                </li>
+                <li class="empty_road" id="road_4">
+                    <span class="accessibility">Feld 5</span>
+                </li>
+                <li class="oil_road" id="road_5">
+                    <span class="accessibility">Feld 6</span>
+                </li>
+                <li id="finish_road">
+                    <span class="accessibility">Zielfeld</span>
+                </li>
+            </ol>
+        </h:panelGroup>
+    </ui:define>
+    <ui:define name="player">
+        <h:panelGroup layout="block" id="player" class="player">
+            <h2 class="accessibility">Wrfelbereich</h2>
+            <span class="accessibility">An der Reihe ist</span><div id="currentPlayerName">#{game.player.name}</div>
+            <h:form id="form">
+                <h:commandButton id="dice" image="resources/img/wuerfel1.png" tabindex="4" action="#{game.rollthedice}" title="Wrfel mit einer Eins" alt="Wrfel mit einer Eins">
+                    <f:ajax render=":info :field :player"/>
+                </h:commandButton>
+            </h:form>
+            <h:outputText id="out" value="p1 sc:#{game.player.score}, pos: #{game.player.position}, cp sc:#{game.computer.score}, pos: #{game.computer.position}, go: #{game.gameOver}"/> 
+        </h:panelGroup>
+    </ui:define>
+</ui:composition>
