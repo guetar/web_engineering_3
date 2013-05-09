@@ -31,7 +31,7 @@ public class Auth {
     private boolean newPlayer = false;
     private boolean wrongPwd = false;
     
-	private ResourceBundle bundle;
+    private ResourceBundle bundle;
     private HashMap<String, Player> players = new HashMap<String, Player>();
 
     public Auth() {

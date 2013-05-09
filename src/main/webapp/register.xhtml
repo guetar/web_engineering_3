@@ -30,12 +30,7 @@
                     </p><h3>
                         <h:outputLabel value="#{msg.personalData}" for="personalData" />
                     </h3>
-                    <h:panelGrid id="grid_person" columns="3">
-                        <h:outputLabel value="#{msg.firstname}: " for="first"/>
-                        <h:inputText id="first"  required="true" label="First">
-                            <f:validateRegex pattern="^[a-zA-Z]+$"/>
-                        </h:inputText>
-                        <h:message id="first_messages" for="first" style="color:red"/>
+                    
 
                         <h:panelGrid id="grid_person" columns="3">
                             <h:outputLabel value="#{msg.firstname}: " for="first"/>
@@ -74,18 +69,16 @@
                             <h:message id="name_messages" for="name" style="color:red"/>
 
                             <h:outputLabel value="#{msg.pwd}: " for="pwd"/>
-                            <h:inputText id="pwd" value="#{auth.player.pwd}">
+                            <h:inputSecret id="pwd" value="#{auth.player.pwd}">
                                 <f:validateLength minimum="2"/>
                                 <f:validateRegex pattern="^[a-zA-Z0-9]+$"/>
-                            </h:inputText>
+                            </h:inputSecret>
                             <h:message id="pwd_messages" for="pwd" style="color:red"/>
 
-                            <h:commandButton id="login" value="#{msg.register}" action="#{auth.register}" />
                         </h:panelGrid>
 
                         <h:commandButton id="login" value="#{msg.register}" action="#{auth.register}" />
-                    </h:panelGrid>
-                </h:form>
+                    </h:form>
                 </div>
             </ui:define>
             

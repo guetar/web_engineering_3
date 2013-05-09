@@ -68,9 +68,9 @@ public class Player {
     public Player(Player p) {
         this.name = p.getName();
         this.pwd = p.getPwd();
-        this.first = p.getFirstName();
-        this.last = p.getLastName();
-        this.birthdate = p.getBirthDate();
+        this.first = p.getFirst();
+        this.last = p.getLast();
+        this.birthdate = p.getBirthdate();
         this.sex = p.getSex();
         setPosition(0);
     }
@@ -128,7 +128,7 @@ public class Player {
         this.first = first;
     }
     
-    public String getFirstName() {
+    public String getFirst() {
         return first;
     }
     
@@ -136,7 +136,7 @@ public class Player {
         this.last = last;
     }
     
-    public String getLastName() {
+    public String getLast() {
         return last;
     }
     
@@ -144,7 +144,7 @@ public class Player {
         this.birthdate = birthdate;
     }
     
-    public Date getBirthDate() {
+    public Date getBirthdate() {
         return birthdate;
     }
     
