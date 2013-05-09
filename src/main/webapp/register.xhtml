@@ -10,16 +10,16 @@
         <ui:composition template="./template.xhtml">
             
             <ui:define name="content">
+                <div class="content">
                 <h:form id="form">
                     
-                    <p>
+                    <h2>
                         <h:outputLabel value="#{msg.register}" for="register" />
-                    </p><p>
+                    </h2><p>
                         <h:outputLabel value="#{msg.registerOrder}" for="registerOrder" />
-                    </p><p>
+                    </p><h3>
                         <h:outputLabel value="#{msg.personalData}" for="personalData" />
-                    </p>
-
+                    </h3>
                     <h:panelGrid id="grid_person" columns="3">
                         <h:outputLabel value="#{msg.firstname}: " for="first"/>
                         <h:inputText id="first"  required="true" label="First">
@@ -42,9 +42,9 @@
                         <h:message id="sex_messages" for="sex" style="color:red"/>
                     </h:panelGrid>
 
-                    <p>
+                    <h3>
                         <h:outputLabel value="#{msg.loginData}" for="loginData"/>
-                    </p>
+                    </h3>
 
                     <h:panelGrid id="grid_login" columns="3">
                         <h:outputLabel value="#{msg.name}: " for=""/>
@@ -63,6 +63,7 @@
                         <h:commandButton id="login" value="#{msg.register}" action="#{auth.register}" />
                     </h:panelGrid>
                 </h:form>
+                </div>
             </ui:define>
             
         </ui:composition>
