@@ -18,7 +18,7 @@ import javax.faces.bean.SessionScoped;
 /**
  * Class representing a Formel 0 game
  */
-@ManagedBean
+@ManagedBean(name="game")
 @SessionScoped
 public class Game {
 
