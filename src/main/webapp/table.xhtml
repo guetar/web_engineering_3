@@ -7,8 +7,8 @@
                 <div id="navigation">
                     <h2 class="accessibility">Navigation</h2>
                     <ul title="Navigation">
-                        <li><h:outputLink value="faces/login.xhtml"><h:outputText value="#{msg.newgame}" /></h:outputLink></li>
-                        <li><h:outputLink value="faces/login.xhtml"><h:outputText value="#{msg.logout}" /></h:outputLink></li>
+                         <li><h:link outcome="table" value="#{msg.newgame}" /></li>
+                          <li><h:link outcome="login" value="#{msg.logout}" /></li>
                     </ul>
                 </div>
     <ui:define id="info" name="info">
