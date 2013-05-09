@@ -31,7 +31,7 @@ public class Auth {
     private boolean newPlayer = false;
     private boolean wrongPwd = false;
     
-	private ResourceBundle bundle;
+    private ResourceBundle bundle;
     private HashMap<String, Player> players = new HashMap<String, Player>();
 
     public Auth() {
@@ -90,7 +90,7 @@ public class Auth {
     //Validation of the birthdate
     public void validateBirthdate(FacesContext ctx, UIComponent component, Object value) throws ValidatorException {
         String birthdate = (String) value;
-        SimpleDateFormat format = new SimpleDateFormat("dd.MM.yyyy");
+        SimpleDateFormat format = new SimpleDateFormat("DD.MM.YYYY");
         
         try{
             format.parse(birthdate);
@@ -99,6 +99,7 @@ public class Auth {
             FacesMessage.SEVERITY_WARN, getValue("wrongbirthdate"), null);
             throw new ValidatorException(msg);
         }
+        
     }
 
     //Login
