@@ -33,7 +33,7 @@ public class Player {
     /**
      * The password of the player
      */
-    private String password;
+    private String pwd;
     /**
      * The current position of the player's car
      */
@@ -45,9 +45,15 @@ public class Player {
      *
      * @param name to set
      */
-    public Player(String name) {
-        super();
+    public Player(String name, String pwd) {
         this.name = name;
+        this.pwd = pwd;
+        setPosition(0);
+    }
+    
+    public Player(Player p) {
+        this.name = p.name;
+        this.pwd = p.pwd;
         setPosition(0);
     }
     
@@ -63,12 +69,12 @@ public class Player {
         this.name = name;
     }
 
-    public String getPassword() {
-        return password;
+    public String getPwd() {
+        return pwd;
     }
 
-    public void setPassword(String password) {
-        this.password = password;
+    public void setPwd(String pwd) {
+        this.pwd = pwd;
     }
 
     /**

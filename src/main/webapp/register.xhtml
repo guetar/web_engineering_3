@@ -10,9 +10,62 @@
         <ui:composition template="./template.xhtml">
             
             <ui:define name="content">
-                
+                <h:form id="form">
+                    
+                    <p>
+                        <h:outputLabel value="#{msg.register}" for="register" />
+                    </p><p>
+                        <h:outputLabel value="#{msg.registerOrder}" for="registerOrder" />
+                    </p><p>
+                        <h:outputLabel value="#{msg.personalData}" for="personalData" />
+                    </p>
+
+                    <h:panelGrid id="grid_person" columns="3">
+                        <h:outputLabel value="#{msg.firstname}: " for="first"/>
+                        <h:inputText id="first"  required="true" label="First">
+                            <f:validateRegex pattern="^[a-zA-Z]+$"/>
+                        </h:inputText>
+                        <h:message id="first_messages" for="first" style="color:red"/>
+
+                        <h:outputLabel value="#{msg.lastname}: " for="last"/>
+                        <h:inputText id="last"  required="true" label="Last">
+                            <f:validateRegex pattern="^[a-zA-Z]+$"/>
+                        </h:inputText>
+                        <h:message id="last_messages" for="last" style="color:red"/>
+
+                        <h:outputLabel value="#{msg.birthdate}: " for="birthdate"/>
+                        <h:inputText id="birthdate"  required="true" label="Birthdate" validator="#{auth.validateBirthdate}"/>
+                        <h:message id="birthdate_messages" for="birthdate" style="color:red"/>
+
+                        <h:outputLabel value="#{msg.sex}: " for="sex"/>
+                        <h:inputText id="sex"  required="true" label="Sex"/>
+                        <h:message id="sex_messages" for="sex" style="color:red"/>
+                    </h:panelGrid>
+
+                    <p>
+                        <h:outputLabel value="#{msg.loginData}" for="loginData"/>
+                    </p>
+
+                    <h:panelGrid id="grid_login" columns="3">
+                        <h:outputLabel value="#{msg.name}: " for=""/>
+                        <h:inputText id="name" value="#{auth.player.name}" required="true" label="Name">
+                            <f:validateRegex pattern="^[a-zA-Z]+$"/>
+                        </h:inputText>
+                        <h:message id="name_messages" for="name" style="color:red"/>
+                        
+                        <h:outputLabel value="#{msg.pwd}: " for="pwd"/>
+                        <h:inputText id="pwd" value="#{auth.player.pwd}">
+                            <f:validateLength minimum="2"/>
+                            <f:validateRegex pattern="^[a-zA-Z0-9]+$"/>
+                        </h:inputText>
+                        <h:message id="pwd_messages" for="pwd" style="color:red"/>
+
+                        <h:commandButton id="login" value="#{msg.register}" action="#{auth.register}" />
+                    </h:panelGrid>
+                </h:form>
             </ui:define>
             
         </ui:composition>
+        
     </body>
 </html>
