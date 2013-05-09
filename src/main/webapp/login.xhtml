@@ -34,10 +34,10 @@
                     <h:message id="name_messages" for="name" style="color:red"/>
                     
                     <h:outputLabel value="#{msg.pwd}: " for="pwd"/>
-                    <h:inputText id="pwd" value="#{auth.player.pwd}" required="true">
+                    <h:inputSecret id="pwd" value="#{auth.player.pwd}" required="true">
                         <f:validateLength minimum="2"/>
                         <f:validateRegex pattern="^[a-zA-Z0-9]+$"/>
-                    </h:inputText>
+                    </h:inputSecret>
                     <h:outputLabel id="pwd_messages" for="pwd" style="color:red" value="#{msg.wrongpwd}" rendered="#{auth.wrongPwd}"/>
                     
                     <h:commandButton id="login" value="#{msg.login}" action="#{auth.login}"/>
