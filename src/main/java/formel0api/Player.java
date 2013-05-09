@@ -40,13 +40,12 @@ public class Player {
      */
     private int position = 0;
 
-
-    private int score;
-    
     private String first;
     private String last;
     private Date birthdate;
     private String sex;
+    
+    private int score;
     
     /** Creates a new instance of Player */
     public Player() {
@@ -124,7 +123,7 @@ public class Player {
         return -1;
     }
     
-    public void setFirstName(String first) {
+    public void setFirst(String first) {
         this.first = first;
     }
     
@@ -132,7 +131,7 @@ public class Player {
         return first;
     }
     
-    public void setLastName(String last) {
+    public void setLast(String last) {
         this.last = last;
     }
     
@@ -140,7 +139,7 @@ public class Player {
         return last;
     }
     
-    public void setBirthDate(Date birthdate) {
+    public void setBirthdate(Date birthdate) {
         this.birthdate = birthdate;
     }
     
