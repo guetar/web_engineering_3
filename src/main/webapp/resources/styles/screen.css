@@ -97,9 +97,19 @@ div#navigation a:hover {
 }
 
 div#content {
-    padding: 1em;
+    padding: 3em;
     font: 1em arial,sans-serif;
     line-height: 1.8em;
+    size: auto;
+    background-color: #ffffff;
+}
+
+div.content {
+    padding: 2em;
+    font: 1em arial,sans-serif;
+    line-height: 1.8em;
+    size: auto;
+    background-color: #ffffff;
 }
 
 div#footer {
