@@ -6,8 +6,8 @@
     <ui:define name="navigation">
         #{game.init("Super Mario", "Super C")} <!-- todo: REPLACE -->
         <ul title="Navigation">
-            <li><h:outputLink value="faces/login.xhtml"><h:outputText value="#{msg.newgame}" /></h:outputLink></li>
-            <li><h:outputLink value="faces/login.xhtml"><h:outputText value="#{msg.logout}" /></h:outputLink></li>
+            <li><li><h:link outcome="table.xhtml" value="#{msg.newgame}" /></li></li>
+            <li><li><h:link outcome="login.xhtml" value="#{msg.logout}" /></li></li>
         </ul>
     </ui:define>
     <ui:define id="info" name="info">

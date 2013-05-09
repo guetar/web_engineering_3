@@ -34,17 +34,17 @@ public class Game {
     /**
      * Dice that is used in this game
      */
-    private Dice dice = new Dice();
+    private Dice dice;
     /**
      * Specifies if the game is over (
      * <code>true</code>) or not (
      * <code>false</code)
      */
-    private boolean gameOver = false;
+    private boolean gameOver;
     /**
      * Starting time of the game
      */
-    private long gamestarttime = System.currentTimeMillis();
+    private long gamestarttime;
     /**
      * Time already spent in this game
      */
@@ -65,6 +65,9 @@ public class Game {
     public void init(String playerName, String computerName) {
         player = new Player(playerName, "");
         computer = new Player(computerName, "");
+        dice = new Dice();
+        gameOver = false;
+        gamestarttime = System.currentTimeMillis();
     }
 
     /**
@@ -177,5 +180,11 @@ public class Game {
 
     public int getRound() {
         return round;
+    }
+    
+    public void newGame() {
+        
+
+        this.init(player.getName(), computer.getName());
     }
 }
