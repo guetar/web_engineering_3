@@ -68,6 +68,7 @@ public class Game {
         dice = new Dice();
         gameOver = false;
         gamestarttime = System.currentTimeMillis();
+        round = 0;
     }
 
     /**
@@ -141,8 +142,8 @@ public class Game {
         }
         
         round++;
-        rollthedice(player);
         rollthedice(computer);
+        rollthedice(player);
     }
 
     /**
@@ -182,9 +183,12 @@ public class Game {
         return round;
     }
     
-    public void newGame() {
-        
-
-        this.init(player.getName(), computer.getName());
+    public int getDiceEyes (){
+        return dice.getEyes();
     }
+    
+    public String getDiceEyesString() {
+        return dice.getEyesString();
+    }
+    
 }

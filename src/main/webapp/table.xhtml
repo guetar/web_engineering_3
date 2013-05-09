@@ -4,10 +4,10 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:ui="http://java.sun.com/jsf/facelets">
     <ui:define name="navigation">
-        #{game.init("Super Mario", "Super C")} <!-- todo: REPLACE -->
+        #{game.init(player.name, "Super C")} <!-- todo: REPLACE -->
         <ul title="Navigation">
-            <li><li><h:link outcome="table.xhtml" value="#{msg.newgame}" /></li></li>
-            <li><li><h:link outcome="login.xhtml" value="#{msg.logout}" /></li></li>
+            <li><h:link outcome="table.xhtml" value="#{msg.newgame}" /></li>
+            <li><h:link outcome="login.xhtml" value="#{msg.logout}" /></li>
         </ul>
     </ui:define>
     <ui:define id="info" name="info">
@@ -67,7 +67,7 @@
             <h2 class="accessibility">#{msg.diceArea}</h2>
             <span class="accessibility">#{msg.turn}</span><div id="currentPlayerName">#{game.player.name}</div>
             <h:form id="form">
-                <h:commandButton id="dice" image="resources/img/wuerfel1.png" tabindex="4" action="#{game.rollthedice}" title="Wrfel mit einer Eins" alt="Wrfel mit einer Eins">
+                <h:commandButton id="dice" image="resources/img/wuerfel#{game.getDiceEyes()}.png" tabindex="4" action="#{game.rollthedice}" title="Wrfel mit einer #{game.getDiceEyesString()}" alt="Wrfel mit einer #{game.getDiceEyesString()}">
                     <f:ajax render=":info :field :player"/>
                 </h:commandButton>
             </h:form>
