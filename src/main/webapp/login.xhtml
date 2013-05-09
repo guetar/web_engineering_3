@@ -26,7 +26,7 @@
                         <f:validateLength minimum="2"/>
                         <f:validateRegex pattern="^[a-zA-Z0-9]+$"/>
                     </h:inputText>
-                    <h:outputText id="pwd_messages" for="pwd" style="color:red" value="#{msg.wrongpwd}" rendered="#{auth.wrongPwd}"/>
+                    <h:outputLabel id="pwd_messages" for="pwd" style="color:red" value="#{msg.wrongpwd}" rendered="#{auth.wrongPwd}"/>
                     
                     <h:commandButton id="login" value="#{msg.login}" action="#{auth.login}"/>
                     
