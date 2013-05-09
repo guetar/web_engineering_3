@@ -6,6 +6,7 @@
 package formel0api;
 
 import java.util.Date;
+import java.util.HashMap;
 import java.util.Random;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
@@ -13,22 +14,23 @@ import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
-import javax.faces.event.ValueChangeEvent;
 import javax.faces.validator.ValidatorException;
 
 /**
  *
  * @author Dieter
  */
-@ManagedBean
+@ManagedBean(name="loginCtrl")
 @SessionScoped
 public class LoginCtrl {
-    @ManagedProperty(value="#{Player}")
+    @ManagedProperty(value="#{player}")
     Player player;
     @ManagedProperty(value = "true")
+    
     private boolean displayonline;
-
-    boolean loginfailed = false;
+    private boolean loginfailed = false;
+    
+    private HashMap<String, Player> players = new HashMap<String, Player>();
 
     /** Creates a new instance of LoginCtrl */
     public LoginCtrl() {
@@ -63,49 +65,52 @@ public class LoginCtrl {
         this.displayonline = displayonline;
     }
 
-
-    public int getOnlinePlayers()
-    {
+    public int getOnlinePlayers() {
         return new Random().nextInt(10) + 1;
     }
 
-    //Login - check password
-    public String login()
-    {
-        if(player.getPassword().equals("secret"))
-        {
-            loginfailed = false;
-            return "/store_main.xhtml";
-        }
-
-        else
-        {
+    //Login
+    public String login() {
+        if(players.containsKey(player.getName())) {
+            if(players.get(player.getName()).getPassword().equals(player.getPassword())) {
+                loginfailed = false;
+                return "/table.xhtml";
+            } else {
+                loginfailed = true;
+                return "/login.xhtml";
+            }
+        } else {
             loginfailed = true;
-            return "/login.xhtml";
+            return "/register.xhtml";
+        }
+    }
+    
+    //Register
+    public void register() {
+        
+    }
+
+    //Validation of the playerName
+    public void validateName(FacesContext ctx, UIComponent component, Object value) throws ValidatorException {
+        String name = (String) value;
+
+        if(!players.containsKey(name)) {
+            FacesMessage msg = new FacesMessage(
+            FacesMessage.SEVERITY_WARN,"You are not yet registered!", null);
+            throw new ValidatorException(msg);
+        } else {
+            player = players.get(name);
         }
     }
 
-    //Checks if the display checkbox changed
-    public void displayChanged(ValueChangeEvent e){
-        Boolean show = (Boolean) e.getNewValue();
-        if(show != null)
-            displayonline = show;
+    //Validation of the playerName
+    public void validatePassword(FacesContext ctx, UIComponent component, Object value) throws ValidatorException {
+        String password = (String) value;
 
-        FacesContext.getCurrentInstance().renderResponse();
-    }
-
-    //Validation of the Playername
-    public void validatePlayername(FacesContext ctx, UIComponent component, Object value) throws ValidatorException
-    {
-        String Playername = (String)value;
-
-        if(!Playername.equals("Markus") && !Playername.equals("Heidi"))
-        {
+        if(!player.getPassword().equals(password)) {
             FacesMessage msg = new FacesMessage(
-            FacesMessage.SEVERITY_WARN,"Wrong Playername!", null);
+            FacesMessage.SEVERITY_WARN,"Wrong password!", null);
             throw new ValidatorException(msg);
         }
     }
-
-
 }

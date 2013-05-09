@@ -14,13 +14,15 @@
                 <h:panelGrid id="grid" columns="1">
                     <h:outputLabel value="#{msg.name}: " for="name"/>
                     <h:inputText id="name" value="#{loginCtrl.player.name}" required="true"
-                                 validator="#{loginCtrl.validateUsername}" label="Name">
-                        <f:validateLength minimum="3" maximum="8"/>
+                                 validator="#{loginCtrl.validateName}" label="Name">
+                        <f:validateLength minimum="1" maximum="9"/>
+                        <f:validateRegex pattern="[A-Z][a-zA-Z]*"/>
                     </h:inputText>
+                    <h:outputText value="#{msg.wrongusername}" rendered="#{loginCtrl.loginfailed}" style="color: red"/>
                     <h:outputLabel value="#{msg.password}: " for="password"/>
                     <h:inputText id="password" value="#{loginCtrl.player.password}"/>
-                    <h:commandButton id="login" value="#{msg.login}" action="#{loginCtrl.login}" />
                     <h:outputText value="#{msg.wrongpwd}" rendered="#{loginCtrl.loginfailed}" style="color: red"/>
+                    <h:commandButton id="login" value="#{msg.login}" action="#{loginCtrl.login}" />
                 </h:panelGrid>
             </h:form>
         </ui:define>
