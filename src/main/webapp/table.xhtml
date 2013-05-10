@@ -14,15 +14,15 @@
         <h:panelGroup layout="block" id="info" class="info">
             <h2>#{msg.gameInfo}</h2>
             <table summary="Diese Tabelle zeigt Informationen zum aktuellen Spiel">
-                <tr><th id="leaderLabel" class="label">#{msg.leader}</th><td id="leader" class="data">#{game.leader.name != null ? game.leader.name : "mehrere"}</td></tr>
+                <tr><th id="leaderLabel" class="label">#{msg.leader}</th><td id="leader" class="data">#{game.leader.name != null ? game.leader.name : msg.multiple}</td></tr>
                 <tr><th id="roundLabel" class="label">#{msg.round}</th><td id="round" class="data">#{game.round}</td></tr>
                 <tr><th id="timeLabel" class="label">#{msg.time}</th><td id="time" class="data">#{game.spentTimeString}</td></tr>
                 <tr><th id="computerScoreLabel" class="label">#{msg.roll} <em>#{game.computer.name}</em></th><td id="computerScore" class="data">#{game.computer.score}</td></tr>
             </table>  
             <h2>#{msg.player}</h2>
             <table summary="Diese Tabelle listet die Namen der Spieler auf">
-                <tr><th id="player1NameLabel" class="label">#{game.player.name}</th><td id="player1Name" class="data">#{game.player.name}</td></tr>
-                <tr><th id="player2NameLabel" class="label">#{game.computer.name}</th><td id="player2Name" class="data">#{game.computer.name}</td></tr>
+                <tr><th id="player1NameLabel" class="label">#{msg.player} 1</th><td id="player1Name" class="data">#{game.player.name}</td></tr>
+                <tr><th id="player2NameLabel" class="label">#{msg.player} 2</th><td id="player2Name" class="data">#{game.computer.name}</td></tr>
             </table>    	
         </h:panelGroup>
     </ui:define>
@@ -67,7 +67,7 @@
             <h2 class="accessibility">#{msg.diceArea}</h2>
             <span class="accessibility">#{msg.turn}</span><div id="currentPlayerName">#{game.player.name}</div>
             <h:form id="form">
-                <h:commandButton id="dice" image="resources/img/wuerfel#{game.getDiceEyes()}.png" tabindex="4" action="#{game.rollthedice}" title="Wrfel mit einer #{game.getDiceEyesString()}" alt="Wrfel mit einer #{game.getDiceEyesString()}">
+                <h:commandButton id="dice" image="resources/img/wuerfel#{game.getDiceEyes()}.png" tabindex="4" action="#{game.rollthedice}" title="#{msg.diceDesc} #{game.getDiceEyesString()}" alt="#{msg.diceDesc} #{game.getDiceEyesString()}">
                     <f:ajax render=":info :field :player"/>
                 </h:commandButton>
             </h:form>
