@@ -1,36 +1,31 @@
 <?xml version='1.0' encoding='UTF-8' ?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:ui="http://java.sun.com/jsf/facelets"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core">
-    
-    <body>
-        
-    <ui:composition template="./template.xhtml">
-         <ui:define name="navigation">
-                
-            <div id="navigation">
-                <h2 class="accessibility">Navigation</h2>
-                <ul title="Navigation">
-                    <li><h:link outcome="register" value="#{msg.register}" /></li>
-                </ul>
-            </div>
+<ui:composition template="./template.xhtml"
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core">
+    <ui:define name="navigation">
 
-        </ui:define>
-        
-        <ui:define name="content">
-            <div class="content">
+        <div id="navigation">
+            <h2 class="accessibility">Navigation</h2>
+            <ul title="Navigation">
+                <li><h:link outcome="register" value="#{msg.register}" /></li>
+            </ul>
+        </div>
+
+    </ui:define>
+
+    <ui:define name="content">
+        <div class="content">
             <h:form id="form">
-                
+
                 <h:panelGrid id="grid" columns="3">
-                    
+
                     <h:outputLabel value="#{msg.name}: " for="name"/>
                     <h:inputText id="name" value="#{auth.player.name}" required="true">
                         <f:validateRegex pattern="^[a-zA-Z]+$"/>
                     </h:inputText>
                     <h:message id="name_messages" for="name" style="color:red"/>
-                    
+
                     <h:outputLabel value="#{msg.pwd}: " for="pwd"/>
                     <h:inputSecret id="pwd" value="#{auth.player.pwd}" required="true">
                         <f:validateLength minimum="2"/>
@@ -38,18 +33,16 @@
                     </h:inputSecret>
                     <h:message id="pwd_messages" for="pwd" style="color:red"/>
                     <h:outputLabel id="pwd_incorrect" for="pwd" style="color:red" value="#{msg.wrongpwd}" rendered="#{auth.wrongPwd}"/>
-                    
+
                     <h:commandButton id="login" value="#{msg.login}" action="#{auth.login}"/>
-                    
+
                     <h:outputLabel id="newPlayer" value="#{msg.newplayer}" rendered="#{auth.newPlayer}" style="color: red"/>
                     <h:link value="#{msg.register}" outcome="register" rendered="#{auth.newPlayer}"/>
-                    
-                </h:panelGrid>
-                
-            </h:form>
-            </div>
-        </ui:define>
 
-    </ui:composition>
-    </body>
-</html>
+                </h:panelGrid>
+
+            </h:form>
+        </div>
+    </ui:define>
+
+</ui:composition>

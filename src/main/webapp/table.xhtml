@@ -4,7 +4,7 @@
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:ui="http://java.sun.com/jsf/facelets">
     <ui:define name="navigation">
-        #{game.init(player.name, "Super C")} <!-- todo: REPLACE -->
+        #{game.init(player.name, "Super C")}
         <ul title="Navigation">
             <li><h:link outcome="table.xhtml" value="#{msg.newgame}" /></li>
             <li><h:link outcome="login.xhtml" value="#{msg.logout}" /></li>

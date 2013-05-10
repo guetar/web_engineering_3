@@ -1,92 +1,84 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml" lang="de" xml:lang="de"
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-      xmlns:ui="http://java.sun.com/jsf/facelets">
-    
-    <body>
-        
-        <ui:composition template="./template.xhtml">
-            <ui:define name="navigation">
-                
-                <div id="navigation">
-                    <h2 class="accessibility">Navigation</h2>
-                    <ul title="Navigation">
-                        
-                        <li><h:link outcome="login" value="#{msg.home}" /></li>
-                        
-                    </ul>
-                </div>
-                
-            </ui:define>
-            
-            <ui:define name="content">
-                <div class="content">
-                <h:form id="form">
-                    
-                    <h2>
-                        <h:outputLabel value="#{msg.register}" for="register" />
-                    </h2><p>
-                        <h:outputLabel value="#{msg.registerOrder}" for="registerOrder" />
-                    </p><h3>
-                        <h:outputLabel value="#{msg.personalData}" for="personalData" />
-                    </h3>
-                    
+<ui:composition template="./template.xhtml"
+                xmlns:h="http://java.sun.com/jsf/html"
+                xmlns:f="http://java.sun.com/jsf/core"
+                xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:define name="navigation">
 
-                        <h:panelGrid id="grid_person" columns="3">
-                            <h:outputLabel value="#{msg.firstname}: " for="first"/>
-                            <h:inputText id="first" value="#{auth.player.first}" required="true" label="First">
-                                <f:validateRegex pattern="^[a-zA-Z]+$"/>
-                            </h:inputText>
-                            <h:message id="first_messages" for="first" style="color:red"/>
+        <div id="navigation">
+            <h2 class="accessibility">Navigation</h2>
+            <ul title="Navigation">
 
-                            <h:outputLabel value="#{msg.lastname}: " for="last"/>
-                            <h:inputText id="last" value="#{auth.player.last}" required="true" label="Last">
-                                <f:validateRegex pattern="^[a-zA-Z]+$"/>
-                            </h:inputText>
-                            <h:message id="last_messages" for="last" style="color:red"/>
+                <li><h:link outcome="login" value="#{msg.home}" /></li>
 
-                            <h:outputLabel value="#{msg.birthdate}: " for="birthdate"/>
-                            <h:inputText id="birthdate" value="#{auth.player.birthdate}" required="true" label="Birthdate">
-                                <f:convertDateTime pattern="dd.MM.yyyy" timeZone="GMT+1" />
-                            </h:inputText>
-                            <h:message id="birthdate_messages" for="birthdate" style="color:red"/>
+            </ul>
+        </div>
 
-                            <h:outputLabel value="#{msg.sex}: " for="birthdate"/>
-                            <h:selectOneMenu value="#{auth.player.sex}" id="sex" title="#{msg.sex}: ">
-                                <f:selectItem id="female" itemValue="female"/>
-                                <f:selectItem id="male" itemValue="male"/>
-                            </h:selectOneMenu>
-                            <h:message id="sex_messages" for="sex" style="color:red"/>
-                        </h:panelGrid>
+    </ui:define>
 
-                        <p>
-                            <h:outputLabel value="#{msg.loginData}" for="loginData"/>
-                        </p>
+    <ui:define name="content">
+        <div class="content">
+            <h:form id="form">
 
-                        <h:panelGrid id="grid_login" columns="3">
-                            <h:outputLabel value="#{msg.name}: " for=""/>
-                            <h:inputText id="name" value="#{auth.player.name}" required="true" label="Name">
-                                <f:validateRegex pattern="^[a-zA-Z]+$"/>
-                            </h:inputText>
-                            <h:message id="name_messages" for="name" style="color:red"/>
+                <h2>
+                    <h:outputLabel value="#{msg.register}" for="register" />
+                </h2><p>
+                    <h:outputLabel value="#{msg.registerOrder}" for="registerOrder" />
+                </p><h3>
+                    <h:outputLabel value="#{msg.personalData}" for="personalData" />
+                </h3>
 
-                            <h:outputLabel value="#{msg.pwd}: " for="pwd"/>
-                            <h:inputSecret id="pwd" value="#{auth.player.pwd}">
-                                <f:validateLength minimum="2"/>
-                                <f:validateRegex pattern="^[a-zA-Z0-9]+$"/>
-                            </h:inputSecret>
-                            <h:message id="pwd_messages" for="pwd" style="color:red"/>
 
-                        </h:panelGrid>
+                <h:panelGrid id="grid_person" columns="3">
+                    <h:outputLabel value="#{msg.firstname}: " for="first"/>
+                    <h:inputText id="first" value="#{auth.player.first}" required="true" label="First">
+                        <f:validateRegex pattern="^[a-zA-Z]+$"/>
+                    </h:inputText>
+                    <h:message id="first_messages" for="first" style="color:red"/>
 
-                        <h:commandButton id="login" value="#{msg.register}" action="#{auth.register}" />
-                    </h:form>
-                </div>
-            </ui:define>
-            
-        </ui:composition>
-        
-    </body>
-</html>
+                    <h:outputLabel value="#{msg.lastname}: " for="last"/>
+                    <h:inputText id="last" value="#{auth.player.last}" required="true" label="Last">
+                        <f:validateRegex pattern="^[a-zA-Z]+$"/>
+                    </h:inputText>
+                    <h:message id="last_messages" for="last" style="color:red"/>
+
+                    <h:outputLabel value="#{msg.birthdate}: " for="birthdate"/>
+                    <h:inputText id="birthdate" value="#{auth.player.birthdate}" required="true" label="Birthdate">
+                        <f:convertDateTime pattern="dd.MM.yyyy" timeZone="GMT+1" />
+                    </h:inputText>
+                    <h:message id="birthdate_messages" for="birthdate" style="color:red"/>
+
+                    <h:outputLabel value="#{msg.sex}: " for="birthdate"/>
+                    <h:selectOneMenu value="#{auth.player.sex}" id="sex" title="#{msg.sex}: ">
+                        <f:selectItem id="female" itemValue="female"/>
+                        <f:selectItem id="male" itemValue="male"/>
+                    </h:selectOneMenu>
+                    <h:message id="sex_messages" for="sex" style="color:red"/>
+                </h:panelGrid>
+
+                <p>
+                    <h:outputLabel value="#{msg.loginData}" for="loginData"/>
+                </p>
+
+                <h:panelGrid id="grid_login" columns="3">
+                    <h:outputLabel value="#{msg.name}: " for=""/>
+                    <h:inputText id="name" value="#{auth.player.name}" required="true" label="Name">
+                        <f:validateRegex pattern="^[a-zA-Z]+$"/>
+                    </h:inputText>
+                    <h:message id="name_messages" for="name" style="color:red"/>
+
+                    <h:outputLabel value="#{msg.pwd}: " for="pwd"/>
+                    <h:inputSecret id="pwd" value="#{auth.player.pwd}">
+                        <f:validateLength minimum="2"/>
+                        <f:validateRegex pattern="^[a-zA-Z0-9]+$"/>
+                    </h:inputSecret>
+                    <h:message id="pwd_messages" for="pwd" style="color:red"/>
+
+                </h:panelGrid>
+
+                <h:commandButton id="login" value="#{msg.register}" action="#{auth.register}" />
+            </h:form>
+        </div>
+    </ui:define>
+
+</ui:composition>
