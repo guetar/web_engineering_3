@@ -50,7 +50,9 @@ public class Game {
      */
     private long spenttime;
     private int round;
-
+    private String[] bez = {"start_road", "road_1", "road_2", "road_3", "road_4", "road_5", "finish_road"};
+    private boolean[] oil = {false, false, true, false, false, true, false};
+    
     public Game() {
     }
 
@@ -191,4 +193,19 @@ public class Game {
         return dice.getEyesString();
     }
     
+    public String getRoadName(int pos) {
+        if(pos < 0 || pos >= bez.length) {
+            return bez[0];
+        }
+        
+        return bez[pos];
+    }
+    
+    public boolean isOilField(int pos) {
+        if(pos < 0 || pos >= oil.length) {
+            return false;
+        }
+        
+        return oil[pos];
+    }
 }
