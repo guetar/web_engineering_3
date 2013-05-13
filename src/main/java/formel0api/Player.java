@@ -49,6 +49,8 @@ public class Player {
     
     /** Creates a new instance of Player */
     public Player() {
+        name="";
+        this.pwd="";
     }
     
     /**

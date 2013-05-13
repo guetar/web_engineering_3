@@ -10,7 +10,13 @@
             //<![CDATA[
             
             $(document).ready(function() {
-                #{game.init(player.name, "Super C")};
+                
+               #{game.init(player.name, "Super C")};
+               
+               if(#{game.illegalGame()}) {
+                    self.location.href='./login.xhtml';
+               }
+                
             });
 
             function anim(data) {
@@ -72,7 +78,8 @@
     <ui:define name="navigation">
         <ul title="Navigation">
             <li><h:link outcome="table.xhtml" value="#{msg.newgame}" /></li>
-            <li><h:link outcome="login.xhtml" value="#{msg.logout}" /></li>
+            <li><h:form id="navForm">
+                    <h:commandLink action="#{game.destroyGame()}" value="#{msg.logout}" /></h:form></li>
         </ul>
     </ui:define>
     <ui:define id="info" name="info">
@@ -87,7 +94,7 @@
             <h2>#{msg.player}</h2>
             <table summary="Diese Tabelle listet die Namen der Spieler auf">
                 <tr><th id="player1NameLabel" class="label">#{msg.player} 1</th><td id="player1Name" class="data">#{game.player.name}</td></tr>
-                <tr><th id="player2NameLabel" class="label">#{msg.player} 2</th><td id="player2Name" class="data">#{game.computer.name} #{game.gameOver} #{game.gameOverSecure}</td></tr>
+                <tr><th id="player2NameLabel" class="label">#{msg.player} 2</th><td id="player2Name" class="data">#{game.computer.name}</td></tr>
             </table>    
             <h:inputHidden id="p1new" value="#{game.player.position}"/>
             <h:inputHidden id="p1old" value="#{game.player.getPositionMinusT(1)}"/>

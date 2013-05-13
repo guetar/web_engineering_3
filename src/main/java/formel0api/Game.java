@@ -14,6 +14,8 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
+import javax.servlet.http.HttpSession;
 
 /**
  * Class representing a Formel 0 game
@@ -64,12 +66,9 @@ public class Game {
         this.player = player;
         this.computer = computer;
     }
-    
-    public void doNothing() {
-        
-    }
 
     public void init(String playerName, String computerName) {
+        System.out.println("AAAAAAAAA" +playerName+"BB");
         player = new Player(playerName, "");
         computer = new Player(computerName, "");
         dice = new Dice();
@@ -225,5 +224,14 @@ public class Game {
         }
         
         return oil[pos];
+    }
+    
+    public boolean illegalGame() {
+        return (player.getName().equals("")) ? true : false;
+    }
+    
+    public void destroyGame() {
+        HttpSession session = (HttpSession) FacesContext.getCurrentInstance().getExternalContext().getSession(true);
+        session.invalidate();
     }
 }
