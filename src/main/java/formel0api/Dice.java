@@ -23,10 +23,11 @@ public class Dice {
         random = new Random();
         eye = 0;
         bez = new HashMap<Integer,String>();
-        bez.put(1, "Eins");
-        bez.put(2, "Zwei");
-        bez.put(3, "Drei");
-        bez.put(0, "");
+        bez.put(1, "one");
+        bez.put(2, "two");
+        bez.put(3, "three");
+        bez.put(0, "one");
+        
     }
 
     /**
@@ -44,6 +45,6 @@ public class Dice {
     }
     
     public String getEyesString() {
-        return bez.get(eye);
+        return "msg."+bez.get(eye);
     }
 }
