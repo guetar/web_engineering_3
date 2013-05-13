@@ -29,10 +29,10 @@
                         <f:validateRegex pattern="^[a-zA-Z]+[0-9]+$"/>
                     </h:inputSecret>
                     <h:message id="pwd_messages" for="pwd" style="color:red"/>
-                    <h:outputLabel id="pwd_incorrect" for="pwd" style="color:red" value="#{msg.wrongpwd}" rendered="#{auth.wrongPwd}"/>
 
                     <h:commandButton id="login" value="#{msg.login}" action="#{auth.login}"/>
 
+                    <h:outputLabel id="pwd_incorrect" for="pwd" style="color:red" value="#{msg.wrongpwd}" rendered="#{auth.wrongPwd}"/>
                     <h:outputLabel id="newPlayer" value="#{msg.newplayer}" rendered="#{auth.newPlayer}" style="color: red"/>
                     <h:link value="#{msg.register}" outcome="register" rendered="#{auth.newPlayer}"/>
 
