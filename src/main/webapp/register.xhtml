@@ -56,7 +56,7 @@
                 </p>
 
                 <h:panelGrid id="grid_login" columns="3">
-                    <h:outputLabel value="#{msg.name}: " for=""/>
+                    <h:outputLabel value="#{msg.name}: " for="name"/>
                     <h:inputText id="name" value="#{auth.player.name}" required="true" label="Name">
                         <f:validateRegex pattern="^[a-zA-Z]+$"/>
                     </h:inputText>
