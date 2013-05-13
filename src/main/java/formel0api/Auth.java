@@ -13,11 +13,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.component.UIComponent;
-import javax.faces.component.UIInput;
-import javax.faces.component.html.HtmlSelectBooleanCheckbox;
 import javax.faces.context.FacesContext;
 import javax.faces.validator.ValidatorException;
-import javax.xml.soap.MessageFactory;
 
 /**
  *
@@ -98,9 +95,8 @@ public class Auth {
 	}
     
     // Validate checkbox
-    public void validateCheckBox(FacesContext context, UIComponent component,Object o) {  
-        HtmlSelectBooleanCheckbox checkBox = (HtmlSelectBooleanCheckbox) component;
-        if(checkBox.getSubmittedValue().equals("false") ) {
+    public void validateCheckBox(FacesContext context, UIComponent component, Object value) {
+        if(value.equals(Boolean.FALSE) ) {
             FacesMessage msg = new FacesMessage(
             FacesMessage.SEVERITY_WARN, getValue("noterms"), null);
             throw new ValidatorException(msg);

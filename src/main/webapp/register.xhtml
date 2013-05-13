@@ -69,7 +69,7 @@
                     </h:inputSecret>
                     <h:message id="pwd_messages" for="pwd" style="color:red"/>
                     
-                    <h:selectBooleanCheckbox id="terms" value="#{auth.terms}" valueChangeListener="#{loginCtrl.displayChanged}" required="true"/>
+                    <h:selectBooleanCheckbox id="terms" value="#{auth.terms}" validator="#{auth.validateCheckBox}" required="true"/>
                     <h:outputLabel value="#{msg.terms}" for="terms"/>
                     <h:message id="terms_message" for="terms" style="color:red"/>
                     

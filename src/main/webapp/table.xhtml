@@ -7,9 +7,13 @@
         <h:outputScript name="js/jquery.js"/>
         <script type="text/javascript">
             //<![CDATA[
-
+            
             $(document).ready(function() {
-                #{game.init(player.name, "Super C")}
+                #{game.init(player.name, "Super C")};
+                    
+                dice = "wuerfel" + #{game.getDiceEyes()} + ".png";
+                alert(dice);
+                $("#form:dice").attr("src", dice);
             });
 
             function anim(data) {
