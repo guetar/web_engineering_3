@@ -10,10 +10,6 @@
             
             $(document).ready(function() {
                 #{game.init(player.name, "Super C")};
-                    
-                dice = "wuerfel" + #{game.getDiceEyes()} + ".png";
-                alert(dice);
-                $("#form:dice").attr("src", dice);
             });
 
             function anim(data) {
@@ -133,7 +129,7 @@
             <h2 class="accessibility">#{msg.diceArea}</h2>
             <span class="accessibility">#{msg.turn}</span><div id="currentPlayerName">#{game.player.name}</div>
             <h:form id="form">
-                <h:commandButton id="dice" image="resources/img/wuerfel#{game.getDiceEyes()}.png" tabindex="4" action="#{game.rollthedice}" title="#{msg.diceDesc} #{game.getDiceEyes()}" alt="#{msg.diceDesc} #{game.getDiceEyes()}">
+                <h:commandButton id="dice" image="/resources/img/wuerfel#{game.getDiceEyes()}.png" tabindex="4" action="#{game.rollthedice}" title="#{msg.diceDesc} #{game.getDiceEyes()}" alt="#{msg.diceDesc} #{game.getDiceEyes()}">
                     <f:ajax render=":info :player" onevent="anim"/>
                 </h:commandButton>
             </h:form>
