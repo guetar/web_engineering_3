@@ -25,7 +25,8 @@
                     p2new = $("#p2new").val();
                     p2old = $("#p2old").val();
 
-                    if (p1new != 0) {
+                    
+                    if (p1new !== 0) {
                         $("#player1").fadeOut(delay, function() {
                             $("#player1").appendTo("#" + road[p1new]);
                             $("#player1").fadeIn(delay);
@@ -41,22 +42,24 @@
                             });
                         });
                     }
-                                        
-                    if (p2new != 0) {
-                        $("#player2").delay(p1new != 0 ? 2 * delay : 4 * delay).fadeOut(delay, function() {
-                            $("#player2").appendTo("#" + road[p2new]);
-                            $("#player2").fadeIn(delay);
-                        });
-                    } else {
-                        $("#player2").delay(p1new != 0 ? 2 * delay : 4 * delay).fadeOut(delay, function() {
-                            $("#player2").appendTo("#" + road[p2old]);
-                            $("#player2").fadeIn(delay, function() {
-                                $("#player2").fadeOut(delay, function() {
-                                    $("#player2").appendTo("#" + road[p2new]);
-                                    $("#player2").fadeIn(delay);
+                    
+                    if(p1new<6) {                    
+                        if (p2new !== 0) {
+                            $("#player2").delay(p1new != 0 ? 2 * delay : 4 * delay).fadeOut(delay, function() {
+                                $("#player2").appendTo("#" + road[p2new]);
+                                $("#player2").fadeIn(delay);
+                            });
+                        } else {
+                            $("#player2").delay(p1new != 0 ? 2 * delay : 4 * delay).fadeOut(delay, function() {
+                                $("#player2").appendTo("#" + road[p2old]);
+                                $("#player2").fadeIn(delay, function() {
+                                    $("#player2").fadeOut(delay, function() {
+                                        $("#player2").appendTo("#" + road[p2new]);
+                                        $("#player2").fadeIn(delay);
+                                    });
                                 });
                             });
-                        });
+                        }
                     }
                 }
             }
@@ -130,11 +133,10 @@
             <h2 class="accessibility">#{msg.diceArea}</h2>
             <span class="accessibility">#{msg.turn}</span><div id="currentPlayerName">#{game.player.name}</div>
             <h:form id="form">
-                <h:commandButton id="dice" image="resources/img/wuerfel#{game.getDiceEyes()}.png" tabindex="4" action="#{game.rollthedice}" title="#{msg.diceDesc} #{game.getDiceEyesString()}" alt="#{msg.diceDesc} #{game.getDiceEyesString()}">
+                <h:commandButton id="dice" image="resources/img/wuerfel#{game.getDiceEyes()}.png" tabindex="4" action="#{game.rollthedice}" title="#{msg.diceDesc} #{game.getDiceEyes()}" alt="#{msg.diceDesc} #{game.getDiceEyes()}">
                     <f:ajax render=":info :player" onevent="anim"/>
                 </h:commandButton>
             </h:form>
-            <h:outputText id="out" value="p1 sc:#{game.player.score}, pos: #{game.player.position}, cp sc:#{game.computer.score}, pos: #{game.computer.position}, go: #{game.gameOver}"/> 
         </h:panelGroup>
     </ui:define>
 </ui:composition>

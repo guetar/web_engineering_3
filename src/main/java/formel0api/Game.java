@@ -144,8 +144,9 @@ public class Game {
         }
         
         round++;
-        rollthedice(computer);
+        
         rollthedice(player);
+        rollthedice(computer);
     }
 
     /**
@@ -186,7 +187,7 @@ public class Game {
     }
     
     public int getDiceEyes (){
-        return dice.getEyes();
+        return player.getScore();
     }
     
     public String getDiceEyesString() {
