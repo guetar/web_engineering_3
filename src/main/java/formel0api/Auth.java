@@ -6,10 +6,15 @@
 package formel0api;
 
 import java.util.HashMap;
+import java.util.MissingResourceException;
 import java.util.ResourceBundle;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.component.UIComponent;
+import javax.faces.context.FacesContext;
+import javax.faces.validator.ValidatorException;
 
 /**
  *
@@ -23,12 +28,13 @@ public class Auth {
     
     private boolean newPlayer = false;
     private boolean wrongPwd = false;
+    private boolean terms = false;
     
     private ResourceBundle bundle;
     private HashMap<String, Player> players = new HashMap<String, Player>();
 
     public Auth() {
-        player = new Player("Hans", "Moser");
+        player = new Player("Hans", "Moser128");
         players.put(player.getName(), player); 
     }
 
@@ -57,11 +63,47 @@ public class Auth {
         return wrongPwd;
     }
     
+    public void setTerms(boolean terms) {
+        this.terms = terms;
+    }
+    
+    public boolean getTerms() {
+        return terms;
+    }
+    
     private void reset() {
-        newPlayer = wrongPwd = false;
+        newPlayer = wrongPwd = terms = false;
     }
 
-    //Login
+	private ResourceBundle getBundle() {
+		if (bundle == null) {
+			FacesContext context = FacesContext.getCurrentInstance();
+			bundle = context.getApplication().getResourceBundle(context, "msg");
+		}
+		return bundle;
+	}
+
+	private String getValue(String key) {
+
+		String result = null;
+		try {
+			result = getBundle().getString(key);
+		} catch (MissingResourceException e) {
+			result = "???" + key + "???";
+		}
+		return result;
+	}
+    
+    // Validate checkbox
+    public void validateCheckBox(FacesContext context, UIComponent component, Object value) {
+        if(value.equals(Boolean.FALSE) ) {
+            FacesMessage msg = new FacesMessage(
+            FacesMessage.SEVERITY_WARN, getValue("noterms"), null);
+            throw new ValidatorException(msg);
+        }  
+    }
+
+    // Login
     public String login() {
         reset();
         if(players.containsKey(player.getName())) {
@@ -78,7 +120,7 @@ public class Auth {
         }
     }
     
-    //Register
+    // Register
     public String register() {
         reset();
         if(!players.containsKey(player.getName())) {

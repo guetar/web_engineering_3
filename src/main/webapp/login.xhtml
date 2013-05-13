@@ -26,13 +26,13 @@
                     <h:outputLabel value="#{msg.pwd}: " for="pwd"/>
                     <h:inputSecret id="pwd" value="#{auth.player.pwd}" required="true">
                         <f:validateLength minimum="2"/>
-                        <f:validateRegex pattern="^[a-zA-Z0-9]+$"/>
+                        <f:validateRegex pattern="^.*(?=.*\d)(?=.*[a-zA-Z]).*$"/>
                     </h:inputSecret>
                     <h:message id="pwd_messages" for="pwd" style="color:red"/>
-                    <h:outputLabel id="pwd_incorrect" for="pwd" style="color:red" value="#{msg.wrongpwd}" rendered="#{auth.wrongPwd}"/>
 
                     <h:commandButton id="login" value="#{msg.login}" action="#{auth.login}"/>
 
+                    <h:outputLabel id="pwd_incorrect" for="pwd" style="color:red" value="#{msg.wrongpwd}" rendered="#{auth.wrongPwd}"/>
                     <h:outputLabel id="newPlayer" value="#{msg.newplayer}" rendered="#{auth.newPlayer}" style="color: red"/>
                     <h:link value="#{msg.register}" outcome="register" rendered="#{auth.newPlayer}"/>
 
