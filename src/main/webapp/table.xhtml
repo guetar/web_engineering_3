@@ -3,30 +3,89 @@
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
                 xmlns:ui="http://java.sun.com/jsf/facelets">
+    <ui:define name="head">
+        <h:outputScript name="js/jquery.js"/>
+        <script type="text/javascript">
+            //<![CDATA[
+
+            $(document).ready(function() {
+                #{game.init(player.name, "Super C")}
+            });
+
+            function anim(data) {
+                if (data.status == "success") {
+                    road = new Array("start_road", "road_1", "road_2", "road_3", "road_4", "road_5", "finish_road");
+                    delay = 700;
+                    p1new = $("#p1new").val();
+                    p1old = $("#p1old").val();
+                    p2new = $("#p2new").val();
+                    p2old = $("#p2old").val();
+
+                    if (p1new != 0) {
+                        $("#player1").fadeOut(delay, function() {
+                            $("#player1").appendTo("#" + road[p1new]);
+                            $("#player1").fadeIn(delay);
+                        });
+                    } else {
+                        $("#player1").fadeOut(delay, function() {
+                            $("#player1").appendTo("#" + road[p1old]);
+                            $("#player1").fadeIn(delay, function() {
+                                $("#player1").fadeOut(delay, function() {
+                                    $("#player1").appendTo("#" + road[p1new]);
+                                    $("#player1").fadeIn(delay);
+                                });
+                            });
+                        });
+                    }
+                                        
+                    if (p2new != 0) {
+                        $("#player2").delay(p1new != 0 ? 2 * delay : 4 * delay).fadeOut(delay, function() {
+                            $("#player2").appendTo("#" + road[p2new]);
+                            $("#player2").fadeIn(delay);
+                        });
+                    } else {
+                        $("#player2").delay(p1new != 0 ? 2 * delay : 4 * delay).fadeOut(delay, function() {
+                            $("#player2").appendTo("#" + road[p2old]);
+                            $("#player2").fadeIn(delay, function() {
+                                $("#player2").fadeOut(delay, function() {
+                                    $("#player2").appendTo("#" + road[p2new]);
+                                    $("#player2").fadeIn(delay);
+                                });
+                            });
+                        });
+                    }
+                }
+            }
+            //]]>
+        </script>
+    </ui:define>
     <ui:define name="navigation">
-        #{game.init("Super Mario", "Super C")} <!-- todo: REPLACE -->
         <ul title="Navigation">
-            <li><h:outputLink value="faces/login.xhtml"><h:outputText value="#{msg.newgame}" /></h:outputLink></li>
-            <li><h:outputLink value="faces/login.xhtml"><h:outputText value="#{msg.logout}" /></h:outputLink></li>
+            <li><h:link outcome="table.xhtml" value="#{msg.newgame}" /></li>
+            <li><h:link outcome="login.xhtml" value="#{msg.logout}" /></li>
         </ul>
     </ui:define>
     <ui:define id="info" name="info">
         <h:panelGroup layout="block" id="info" class="info">
             <h2>#{msg.gameInfo}</h2>
             <table summary="Diese Tabelle zeigt Informationen zum aktuellen Spiel">
-                <tr><th id="leaderLabel" class="label">#{msg.leader}</th><td id="leader" class="data">#{game.leader.name != null ? game.leader.name : "mehrere"}</td></tr>
+                <tr><th id="leaderLabel" class="label">#{msg.leader}</th><td id="leader" class="data">#{game.leader.name != null ? game.leader.name : msg.multiple}</td></tr>
                 <tr><th id="roundLabel" class="label">#{msg.round}</th><td id="round" class="data">#{game.round}</td></tr>
                 <tr><th id="timeLabel" class="label">#{msg.time}</th><td id="time" class="data">#{game.spentTimeString}</td></tr>
                 <tr><th id="computerScoreLabel" class="label">#{msg.roll} <em>#{game.computer.name}</em></th><td id="computerScore" class="data">#{game.computer.score}</td></tr>
             </table>  
             <h2>#{msg.player}</h2>
             <table summary="Diese Tabelle listet die Namen der Spieler auf">
-                <tr><th id="player1NameLabel" class="label">#{game.player.name}</th><td id="player1Name" class="data">#{game.player.name}</td></tr>
-                <tr><th id="player2NameLabel" class="label">#{game.computer.name}</th><td id="player2Name" class="data">#{game.computer.name}</td></tr>
-            </table>    	
+                <tr><th id="player1NameLabel" class="label">#{msg.player} 1</th><td id="player1Name" class="data">#{game.player.name}</td></tr>
+                <tr><th id="player2NameLabel" class="label">#{msg.player} 2</th><td id="player2Name" class="data">#{game.computer.name}</td></tr>
+            </table>    
+            <h:inputHidden id="p1new" value="#{game.player.position}"/>
+            <h:inputHidden id="p1old" value="#{game.player.getPositionMinusT(1)}"/>
+            <h:inputHidden id="p2new" value="#{game.computer.position}"/>
+            <h:inputHidden id="p2old" value="#{game.computer.getPositionMinusT(1)}"/>
         </h:panelGroup>
     </ui:define>
-    
+
     <ui:define name="field">
         <h:panelGroup layout="block" id="field" class="field">
             <h2 class="accessibility">#{msg.track}</h2>
@@ -61,14 +120,14 @@
             </ol>
         </h:panelGroup>
     </ui:define>
-    
+
     <ui:define name="player">
         <h:panelGroup layout="block" id="player" class="player">
             <h2 class="accessibility">#{msg.diceArea}</h2>
             <span class="accessibility">#{msg.turn}</span><div id="currentPlayerName">#{game.player.name}</div>
             <h:form id="form">
-                <h:commandButton id="dice" image="resources/img/wuerfel1.png" tabindex="4" action="#{game.rollthedice}" title="Wrfel mit einer Eins" alt="Wrfel mit einer Eins">
-                    <f:ajax render=":info :field :player"/>
+                <h:commandButton id="dice" image="resources/img/wuerfel#{game.getDiceEyes()}.png" tabindex="4" action="#{game.rollthedice}" title="#{msg.diceDesc} #{game.getDiceEyesString()}" alt="#{msg.diceDesc} #{game.getDiceEyesString()}">
+                    <f:ajax render=":info :player" onevent="anim"/>
                 </h:commandButton>
             </h:form>
             <h:outputText id="out" value="p1 sc:#{game.player.score}, pos: #{game.player.position}, cp sc:#{game.computer.score}, pos: #{game.computer.position}, go: #{game.gameOver}"/> 

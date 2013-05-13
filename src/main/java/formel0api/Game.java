@@ -34,23 +34,25 @@ public class Game {
     /**
      * Dice that is used in this game
      */
-    private Dice dice = new Dice();
+    private Dice dice;
     /**
      * Specifies if the game is over (
      * <code>true</code>) or not (
      * <code>false</code)
      */
-    private boolean gameOver = false;
+    private boolean gameOver;
     /**
      * Starting time of the game
      */
-    private long gamestarttime = System.currentTimeMillis();
+    private long gamestarttime;
     /**
      * Time already spent in this game
      */
     private long spenttime;
     private int round;
-
+    private String[] bez = {"start_road", "road_1", "road_2", "road_3", "road_4", "road_5", "finish_road"};
+    private boolean[] oil = {false, false, true, false, false, true, false};
+    
     public Game() {
     }
 
@@ -65,6 +67,10 @@ public class Game {
     public void init(String playerName, String computerName) {
         player = new Player(playerName, "");
         computer = new Player(computerName, "");
+        dice = new Dice();
+        gameOver = false;
+        gamestarttime = System.currentTimeMillis();
+        round = 0;
     }
 
     /**
@@ -138,8 +144,8 @@ public class Game {
         }
         
         round++;
-        rollthedice(player);
         rollthedice(computer);
+        rollthedice(player);
     }
 
     /**
@@ -177,5 +183,29 @@ public class Game {
 
     public int getRound() {
         return round;
+    }
+    
+    public int getDiceEyes (){
+        return dice.getEyes();
+    }
+    
+    public String getDiceEyesString() {
+        return dice.getEyesString();
+    }
+    
+    public String getRoadName(int pos) {
+        if(pos < 0 || pos >= bez.length) {
+            return bez[0];
+        }
+        
+        return bez[pos];
+    }
+    
+    public boolean isOilField(int pos) {
+        if(pos < 0 || pos >= oil.length) {
+            return false;
+        }
+        
+        return oil[pos];
     }
 }
