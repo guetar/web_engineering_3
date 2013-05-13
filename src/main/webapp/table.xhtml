@@ -2,7 +2,8 @@
 <ui:composition template="template.xhtml"
                 xmlns:h="http://java.sun.com/jsf/html"
                 xmlns:f="http://java.sun.com/jsf/core"
-                xmlns:ui="http://java.sun.com/jsf/facelets">
+                xmlns:ui="http://java.sun.com/jsf/facelets"
+                xmlns:c="http://java.sun.com/jsp/jstl/core">
     <ui:define name="head">
         <h:outputScript name="js/jquery.js"/>
         <script type="text/javascript">
@@ -20,41 +21,47 @@
                     p1old = $("#p1old").val();
                     p2new = $("#p2new").val();
                     p2old = $("#p2old").val();
-
+                    gameOver = $("#gameOver").val();
+                    gameOverSecure = $("#gameOverSecure").val();
                     
-                    if (p1new !== 0) {
-                        $("#player1").fadeOut(delay, function() {
-                            $("#player1").appendTo("#" + road[p1new]);
-                            $("#player1").fadeIn(delay);
-                        });
-                    } else {
-                        $("#player1").fadeOut(delay, function() {
-                            $("#player1").appendTo("#" + road[p1old]);
-                            $("#player1").fadeIn(delay, function() {
-                                $("#player1").fadeOut(delay, function() {
-                                    $("#player1").appendTo("#" + road[p1new]);
-                                    $("#player1").fadeIn(delay);
-                                });
-                            });
-                        });
-                    }
-                    
-                    if(p1new<6) {                    
-                        if (p2new !== 0) {
-                            $("#player2").delay(p1new != 0 ? 2 * delay : 4 * delay).fadeOut(delay, function() {
-                                $("#player2").appendTo("#" + road[p2new]);
-                                $("#player2").fadeIn(delay);
+                   
+                    if(gameOver!="true" || gameOverSecure == "false") {
+                        
+                        if (p1new != 0) {
+                            $("#player1").fadeOut(delay, function() {
+                                $("#player1").appendTo("#" + road[p1new]);
+                                $("#player1").fadeIn(delay);
                             });
                         } else {
-                            $("#player2").delay(p1new != 0 ? 2 * delay : 4 * delay).fadeOut(delay, function() {
-                                $("#player2").appendTo("#" + road[p2old]);
-                                $("#player2").fadeIn(delay, function() {
-                                    $("#player2").fadeOut(delay, function() {
-                                        $("#player2").appendTo("#" + road[p2new]);
-                                        $("#player2").fadeIn(delay);
+                            $("#player1").fadeOut(delay, function() {
+                                $("#player1").appendTo("#" + road[p1old]);
+                                $("#player1").fadeIn(delay, function() {
+                                    $("#player1").fadeOut(delay, function() {
+                                        $("#player1").appendTo("#" + road[p1new]);
+                                        $("#player1").fadeIn(delay);
                                     });
                                 });
                             });
+                        }
+
+
+                        if(p1new<6) {             
+                            if (p2new != 0) {
+                                $("#player2").delay(p1new != 0 ? 2 * delay : 4 * delay).fadeOut(delay, function() {
+                                    $("#player2").appendTo("#" + road[p2new]);
+                                    $("#player2").fadeIn(delay);
+                                });
+                            } else {
+                                $("#player2").delay(p1new != 0 ? 2 * delay : 4 * delay).fadeOut(delay, function() {
+                                    $("#player2").appendTo("#" + road[p2old]);
+                                    $("#player2").fadeIn(delay, function() {
+                                        $("#player2").fadeOut(delay, function() {
+                                            $("#player2").appendTo("#" + road[p2new]);
+                                            $("#player2").fadeIn(delay);
+                                        });
+                                    });
+                                });
+                            }
                         }
                     }
                 }
@@ -80,12 +87,14 @@
             <h2>#{msg.player}</h2>
             <table summary="Diese Tabelle listet die Namen der Spieler auf">
                 <tr><th id="player1NameLabel" class="label">#{msg.player} 1</th><td id="player1Name" class="data">#{game.player.name}</td></tr>
-                <tr><th id="player2NameLabel" class="label">#{msg.player} 2</th><td id="player2Name" class="data">#{game.computer.name}</td></tr>
+                <tr><th id="player2NameLabel" class="label">#{msg.player} 2</th><td id="player2Name" class="data">#{game.computer.name} #{game.gameOver} #{game.gameOverSecure}</td></tr>
             </table>    
             <h:inputHidden id="p1new" value="#{game.player.position}"/>
             <h:inputHidden id="p1old" value="#{game.player.getPositionMinusT(1)}"/>
             <h:inputHidden id="p2new" value="#{game.computer.position}"/>
             <h:inputHidden id="p2old" value="#{game.computer.getPositionMinusT(1)}"/>
+            <h:inputHidden id="gameOverSecure" value="#{game.gameOverSecure}"/>
+            <h:inputHidden id="gameOver" value="#{game.gameOver}"/>
         </h:panelGroup>
     </ui:define>
 

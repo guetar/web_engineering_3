@@ -41,6 +41,7 @@ public class Game {
      * <code>false</code)
      */
     private boolean gameOver;
+    private boolean gameOverSecure;
     /**
      * Starting time of the game
      */
@@ -63,12 +64,17 @@ public class Game {
         this.player = player;
         this.computer = computer;
     }
+    
+    public void doNothing() {
+        
+    }
 
     public void init(String playerName, String computerName) {
         player = new Player(playerName, "");
         computer = new Player(computerName, "");
         dice = new Dice();
         gameOver = false;
+        gameOverSecure = false;
         gamestarttime = System.currentTimeMillis();
         round = 0;
     }
@@ -81,6 +87,16 @@ public class Game {
      */
     public boolean isGameOver() {
         return this.gameOver;
+    }
+    
+    /**
+     * Specifies whether this game is over or not for the javascript
+     *
+     * @return <code>true</code> if this game is over, <code>false</code>
+     * otherwise
+     */
+    public boolean isGameOverSecure() {
+        return this.gameOverSecure;
     }
 
     /**
@@ -139,12 +155,13 @@ public class Game {
     }
 
     public void rollthedice() {
+        gameOverSecure = gameOver;
         if(gameOver) {
             return;
         }
         
         round++;
-        
+       
         rollthedice(player);
         rollthedice(computer);
     }
