@@ -75,7 +75,7 @@
                             <h:outputLabel value="#{msg.pwd}: " for="pwd"/>
                             <h:inputSecret id="pwd" value="#{auth.player.pwd}">
                                 <f:validateLength minimum="2"/>
-                                <f:validateRegex pattern="^[a-zA-Z0-9]+$"/>
+                                <f:validateRegex pattern="^[a-zA-Z]+[0-9]+$"/>
                             </h:inputSecret>
                             <h:message id="pwd_messages" for="pwd" style="color:red"/>
 
